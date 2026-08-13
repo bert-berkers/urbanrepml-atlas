@@ -1,0 +1,15 @@
+source_runs: []
+source_artifacts:
+- data/study_areas/south_holland/stage3_analysis/hillclimb_2026-07-20/hillclimb_results.csv
+- data/study_areas/south_holland/stage3_analysis/hillclimb_2026-07-20/hillclimb_results.json
+plot_config:
+  plot: arm_delta_ladder
+  metric: ridge_r2_oof
+  rollup: mean over 8 non-circular targets
+  error: ±1 SE across targets
+git_commit: fb1543fc5cf9f38599236ad747bead37d6de248a
+git_dirty: true
+started_at: '2026-07-20T07:16:46+00:00'
+ended_at: '2026-07-20T07:16:46+00:00'
+producer_script: scripts/one_off/2026-07-20-hillclimb-figure-suite.py
+schema_version: '1.0'

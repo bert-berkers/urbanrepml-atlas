@@ -1,0 +1,16 @@
+figure_stem: fig_kernel_geometry
+formats: ['png', 'pdf']
+created_at: '2026-07-19T20:21:06.804881+00:00'
+regenerated_from: scripts/stage2/sharpening_methodology_figures.py
+variant: title-less (methodology; captions live in the report per figure-creation-discipline)
+source_report: 2026-07-19-sharpen-vs-smooth
+figure_class: kernel
+reads_real_artifacts: false  # kernel geometry/profile is analytic weight vectors
+source_artifacts: none  # kernel weights from ring_aggregation._compute_weights (imported)
+operator_algebra: 'S=sum_r w_r ringmean_r ; H=(1+lam)x-lam*S ; e_0=(1+lam)-lam*w_0, e_r=-lam*w_r'
+ring_agg_arm: k10_exponential (frozen smoother S)
+lam_grid: [0.25, 0.5, 1.0, 2.0, 4.0]
+git_commit: c7df2d0
+house_tokens: [ink, steel, amber, leafgreen, brick, dog_green, dog_grey, dog_red]
+description: "Three kernels on real res10 H3 cells: exponential smoothing footprint, the unsharp effective kernel (positive centre, negative surround, lambda=1), and the DoG annulus-with-gap (green centre, grey gap, red annulus)."
+schema_version: '1.0'

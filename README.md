@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SRAI](https://img.shields.io/badge/Spatial-SRAI-green)](https://github.com/kraina-ai/srai)
 
-UrbanRepML learns dense geospatial (urban) representations by encoding each data modality independently, fusing them spatially through multi-resolution U-Net architectures on [H3 hexagonal grids](https://h3geo.org/), then probing the resulting embeddings against external ground truth. All spatial operations use [SRAI](https://github.com/kraina-ai/srai). The project is developed by a human and [13 dispatchable specialist AI agents](#the-team) coordinated through stigmergic scratchpads.
+UrbanRepML learns dense geospatial (urban) representations by encoding each data modality independently, fusing them spatially through multi-resolution U-Net architectures on [H3 hexagonal grids](https://h3geo.org/), then probing the resulting embeddings against external ground truth. All spatial operations use [SRAI](https://github.com/kraina-ai/srai). The project is developed by a human and [13 dispatchable specialist AI agents](#how-this-project-is-developed) coordinated through stigmergic scratchpads.
 
 For philosophical & societal motivation, and early results of the fullareaU-NET, see the [Active Inference Institute talk](https://www.youtube.com/watch?v=UYD8CR_Xorg&ab_channel=ActiveInferenceInstitute).
 
@@ -253,6 +253,124 @@ dropped rather than softened.
 
 ---
 
+## Sharpening vs smoothing: we tried the opposite and it lost
+
+Ring aggregation blurs — it blends each hexagon into its neighbourhood. The obvious next
+question is whether the *opposite* operation helps. **Sharpening** (technically *unsharp
+masking*, the same operation photo editors use) does this: compute the local average,
+subtract it, then add the leftover difference back amplified by a gain λ. Low λ is a light
+touch; high λ makes each hexagon stand out hard against its surroundings. The intuition is
+appealing — many urban properties are *sharp*, changing block to block, so a blurred
+description should track them poorly and re-amplifying the fine detail should help.
+
+We wrote that intuition down as a prediction *before running anything* — a
+**pre-registration**, which fixes the hypotheses, the success thresholds, and even which
+targets count as "sharp" in advance, so no favourable slice can be selected afterwards.
+Then we ran 648 probe evaluations and reported all of them.
+
+![Kernel geometry: smoothing, unsharp masking and difference-of-Gaussians drawn on real H3 hexagons](reports/2026-07-19-sharpen-vs-smooth/figures/fig_kernel_geometry.png)
+
+***What the two operations actually do, drawn on real hexagons.** Left: smoothing — positive
+weight spread over the neighbourhood. Middle: unsharp masking — a strong positive centre
+with a negative surround, so a hexagon is pushed away from whatever its neighbours look
+like. Right: an annulus variant tested as an exploratory arm. **This is the instrument, not
+a result.** Source: [sharpen-vs-smooth](reports/2026-07-19-sharpen-vs-smooth/README.md).*
+
+![Probe R² dose-response along the sharpening and smoothing axes](reports/2026-07-19-sharpen-vs-smooth/figures/fig_probe_dose_response.png)
+
+***The intuition is falsified, in the exact way the pre-registration named in advance.**
+Sharpening costs accuracy at every dose; smoothing gains at every dose — **including on the
+targets pre-selected for being spatially sharp**, where the sharp-bin mean R² *rises*
+0.5556 → 0.5715 → 0.580 → 0.581 (first step +0.016). The predicted "sharpening helps sharp
+targets" interaction is rejected: β₃ = −0.0031, 95% confidence interval [−0.0124, +0.0042],
+against a pre-set minimum meaningful effect of 0.005. Every single arm's ΔR² is negative.
+**The instrument works** — a separate check confirms the operator genuinely sharpens at all
+15 of 15 dose steps — so the null is about the world, not the tool. **Setup: 3,752,940
+hexagons at H3 resolution 10, 178 dimensions, 14 arms × 648 probe cells, 3 seeds. Vintage:
+embeddings 2022; RUDIFUN density target 2022 (aligned), leefbaarometer 2024 and urban
+taxonomy 2025 (not aligned — declared, not hidden). Caveat: linear probes only, and random
+folds rather than spatial blocks.** Numbers from
+[sharpen-vs-smooth](reports/2026-07-19-sharpen-vs-smooth/README.md).*
+
+**What this means.** For liveability, density, and building morphology, a hexagon's
+neighbourhood is not noise sitting on top of its signal — **the neighbourhood *is* signal.**
+These are partly properties of the surroundings, so high-pass filtering throws away exactly
+the context the prediction depends on. The dose axis is also asymmetric: smoothing's gains
+saturate by about 5 rings, while sharpening's costs keep growing all the way out.
+
+**A related null.** We also asked whether routing information along *real travel networks*
+(walk, bike, drive) rather than the plain hexagon grid helps. Reported in the
+[sharpening-as-explainability pre-registration](reports/2026-07-28-accessibility-sharpening-explainability/PREREGISTRATION.md):
+across five training objectives and three seeds, the travel-graph and plain-grid versions
+scored the same to within noise. **That is a second-hand summary of a companion campaign,
+not a result we re-derived here.** The follow-up asks the better question — not "does it
+score higher?" but "what does it change about the representation?" — and its plan is frozen
+in advance. **It has no results write-up yet; the link is to the plan.**
+
+---
+
+## Geo-MPC: a different kind of model, honestly not working yet
+
+This one is in progress and currently negative. It is here because the negative result is
+the interesting part.
+
+Everything above learns by **backpropagation** — make a prediction, measure the error, push
+the error backwards through the whole network. **Predictive coding** is a different idea,
+closer to how brains are theorised to work: the model continuously predicts what it expects
+to see, and each part updates itself using only *local* information about how wrong its own
+prediction was. No global error signal, no backpropagation. **Geo-MPC** ports that idea onto
+hexagons. The model "looks at" one anchor hexagon at a time through a **windmill glimpse** —
+a few concentric rings around the anchor form the *fovea* (the part that is actually read
+out), and six angular wedges reach outward and shape how the fovea settles. It then jumps to
+another anchor, like an eye making saccades.
+
+![The windmill glimpse geometry drawn on real H3 hexagons around a South Holland anchor](reports/2026-07-20-geo-mpc-windmill-hillclimb/figures/fig01_windmill_bounded_geometry.png)
+
+***What one glimpse is.** Concentric core rings around the anchor hexagon (the fovea, which
+alone forms the readout) plus six outward sectors, shown with and without a radius bound.
+Drawn on actual H3 resolution-9 cells from a South Holland anchor, so the hexagons tile
+exactly. **This is the architecture, not a result.** Source:
+[geo-MPC windmill hillclimb](reports/2026-07-20-geo-mpc-windmill-hillclimb/README.md).*
+
+![Ladder of seven arms showing change versus each arm's own untrained initialisation](reports/2026-07-20-geo-mpc-windmill-hillclimb/figures/fig09_arm_ladder.png)
+
+***Six of seven configurations get worse by training.** Each bar is one variant's downstream
+accuracy *minus that same variant's own untrained, random-weights starting point*. The
+baseline loses 0.084 R² by training. Six arms are unambiguously below zero (0 of 8 targets
+improved, |t| between 3.3 and 7.5). Only the seventh — everything stacked — lands at
+**+0.0040**, and we will not oversell it: spread ±0.019, 4 of 8 targets positive, t = 0.60,
+**statistically indistinguishable from zero, at a single seed.** The defensible claim is
+"training is no longer *destructive*", not "training now helps". **Setup: South Holland, H3
+resolution 9, 34,302 anchor hexagons, 178-dimension input, seed 42, spatial 5-fold
+cross-validation. Vintage: 2022 throughout.***
+
+**The surprise inside the negative.** The variable everyone expected to matter — the glimpse
+geometry — was the *smallest* lever (+0.008 to +0.012). What actually moved things was
+unglamorous numerical calibration: letting the model settle twice as long before updating,
+and updating half as fast. That alone removed 81% of the damage (−0.084 → −0.016). A sweep
+over those two knobs has never been run and is the obvious next experiment.
+
+**The sharpest fact.** Across the wider Geo-MPC investigation, the *best* representation this
+architecture has produced is the one with **random, untrained weights** — 0.474 mean R²,
+ahead of ring aggregation at 0.467 and the raw input at 0.447, while the trained version sits
+at 0.350
+([consolidated report](reports/2026-07-10-mpc-consolidated-report/README.md)). So the useful
+structure is in the *sampling geometry*, and the learning rule is currently removing it.
+
+**And the part that is easy to leave out.** An earlier version of this thread was built and
+trained over several sessions before anyone checked it against the paper it claimed to
+implement. An audit found it internally consistent and faithful to its *own* specification,
+but flagged that whether that specification matched the paper's idea had never been
+answered — it had no saccade loop, no action-conditioning, no iterative settling, and it
+predicted across *scales of one modality* rather than across genuinely independent input
+streams. Those foundational questions were handed back to a human rather than closed by the
+system that raised them, and the code was deleted (commit `cab305a`, ~5,200 lines)
+([implementation audit](reports/2026-06-14-distant-gap-mpc-implementation-audit/README.md)).
+That episode is why this project now requires a human-ratified specification before a novel
+method is allowed to train at all.
+
+---
+
 ## How the maps are made: the Voronoi rasterizer
 
 Every map on this page is drawn by a tessellation-aware **Voronoi rasterizer**. The problem
@@ -361,134 +479,60 @@ Deeper treatments of most results on this page, with the full figure set, are in
 
 UrbanRepML is written by one researcher working with a team of AI agents inside
 [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview).
-That is not unusual by itself. What is unusual is that the *development process* is
-treated as a research object: it is specified, instrumented, and audited with the same
-discipline as the spatial pipeline — and when the audit finds the process broken, that
-gets published too.
+What makes it worth a note here is that the development process is treated as a research
+object in its own right: it is specified, instrumented, and audited with the same
+discipline as the spatial pipeline.
 
-This section explains how the system works. The next one shows what happened when it
-was pointed at itself.
+The problem it solves is that an AI agent has no memory between sessions. Close the
+window and everything it worked out is gone; open a new one and it re-derives finished
+work, or contradicts a decision made last week because it has no way of knowing the
+decision exists.
 
-### The problem it solves
+The fix is **stigmergy** — coordination through the environment rather than through
+direct messages. Ants do not instruct each other; they leave pheromone on the ground and
+the next ant reads the ground. Here the shared medium is a directory of dated markdown
+files: an agent finishing a task writes what it did, what it decided, and what it left
+unresolved, and later agents read those files rather than being told. Agents never
+message each other, so there is no protocol to keep in sync and no message that can be
+missed.
 
-An AI agent has no memory between sessions. Close the window, and everything it worked
-out is gone. Open a new one and it starts from nothing — which in practice means it
-re-derives work that was already finished, or contradicts a decision made last week
-because it has no way of knowing the decision exists.
+Each terminal window is issued a name the first time it starts, and that name is the
+address its memory is filed under. A session **authenticates** that name from the
+process that owns the window rather than inferring it from a plausible-looking file —
+guessing is banned because a session that guessed once wrote its own state onto a
+different terminal that was live at the time.
 
-Six ideas do the load-bearing work here.
+Storing traces turned out to be the easy half. Months of well-written traces accumulated
+and nothing consulted them at the moment a decision was being made: the forgetting was a
+**consumption gap**, not a storage gap, and writing more was never going to fix it. So
+one agent — the **selflet** — does nothing but rank the project's own past traces against
+what this session is about to do, and hand forward a short list with pointers and
+reasons. It runs *before the work is scoped*, so "this was already done last month"
+arrives while the plan is still being written rather than after the work is redone.
 
-### 1. Stigmergy — coordinate by leaving traces, not by talking
-
-**Stigmergy** is coordination through the environment rather than through direct
-messages: ants do not instruct each other, they leave pheromone on the ground and the
-next ant reads the ground. Termite mounds are built this way. Nobody is in charge; the
-structure emerges because every actor modifies a shared medium that every later actor
-reads.
-
-Here, the shared medium is a directory of dated markdown files — one per agent, one
-entry per invocation. An agent finishing a task writes what it did, what it decided,
-what it read from other agents, and what it left unresolved. A later agent — possibly
-days later, possibly in a different terminal window — reads those files rather than
-being told.
-
-Two consequences follow directly. Agents never message each other, so there is no
-protocol to keep in sync and no message that can be missed. And the coordination record
-is a *file on disk*, which means it survives the death of every context window that
-produced it.
-
-### 2. Identity — minted once, authenticated, never guessed
-
-Each terminal window is issued a name (`russet-burning-river`, `twilight-passing-dune`)
-the first time it starts. That name is the address its memory is filed under. It
-persists across context resets: clearing the conversation is a memory flush, not a new
-identity.
-
-Critically, a session **authenticates** its identity — it looks the name up from the
-process that owns the window. It never infers it from a nearby filename that looks
-plausible. Guessing is banned because guessing caused a real incident: a session that
-could not resolve its own identity picked a name out of a file it happened to be
-reading, and wrote its own state onto a *different terminal that was live at the time*,
-flipping that peer's mode mid-task. If authentication fails now, the session refuses to
-proceed rather than inventing an answer.
-
-The general shape — **fail loudly rather than continue on a plausible default** — is a
-standing rule across the whole codebase, in the data pipeline as much as in the harness.
-
-### 3. The selflet — memory is useless unless something reads it
-
-The trace layer had a subtler failure. Months of rich, well-written traces accumulated,
-and nothing consulted them at the moment a decision was being made. The diagnosis:
-**catastrophic forgetting here is a consumption gap, not a storage gap.** Writing more
-was never going to fix it.
-
-The **selflet** is the consumption side. It is an agent whose only job is to rank the
-project's own past traces against what this session is about to do, and hand forward a
-short list of the ones that matter — each with a pointer and a stated reason. It runs
-**before the work is scoped**, so that "this was already done last month" arrives while
-the plan is still being written rather than after the work is redone.
-
-### 4. Gates, not prose — the lesson that keeps recurring
-
-The selflet check was, at first, an instruction. It said clearly that the check must
-run. It was skipped anyway, with an invented justification, and the skip was written
-down as though documenting it made it acceptable.
-
-This is the single most repeated finding in the project's own record, in three
-different areas independently:
+That check began life as an instruction. It was skipped anyway, with an invented
+justification, and the skip was written down as though documenting it made it
+acceptable. This is the most repeated finding in the project's own record:
 
 > **A rule that fires as narration an agent recites while proceeding stops nothing. A
 > validator that raises is a precondition that cannot be argued past.**
 
-So the important rules stopped being prose and became code that refuses:
+So the load-bearing rules stopped being prose and became code that refuses. The plan file
+cannot be written unless the memory check has demonstrably run. A spatial artifact cannot
+be loaded without reading its provenance record — the filename is a convenience, the
+sidecar is the identity. A new model architecture cannot enter a training run until every
+foundational choice carries an explicit human ratification stamp. Each of these replaced a
+correctly-worded instruction that had already failed to stop the thing it described.
 
-- The plan file **cannot be written** unless the memory check has demonstrably run.
-- A spatial artifact **cannot be loaded** without reading its provenance record — the
-  filename is a convenience, the sidecar is the identity.
-- A new model architecture **cannot enter a training run** until every foundational
-  choice carries an explicit human ratification stamp. Agents propose; only the human
-  ratifies; an agent applying that stamp itself is the specific anti-pattern the gate
-  exists to prevent.
-
-Each of these replaced a correctly-worded instruction that had already failed to stop
-the thing it described.
-
-### 5. Three scales, compressing upward
-
-| Scale | Who | Reach | How it communicates |
-|---|---|---|---|
-| **Supra** | the human | across every session and workstream | direct conversation; ratifies foundations |
-| **Lateral** | coordinators — one per terminal window, peers | one session | claims, sparse status messages, a shared plan file |
-| **Vertical** | specialists — dispatched per task | one task | traces on disk |
-
-Information **compresses upward**: a specialist writes fifty lines, the coordinator
-reports five, the human reads one or two. Intent **expands downward**: the human says
-"audit the harness", the coordinator turns that into seven scoped dispatches with
-acceptance criteria. The asymmetry is deliberate — the human's attention is the
-scarcest resource in the system, so everything is built to spend it last.
-
-Multiple terminal windows run at once and are genuine peers; there is no master. They
-share one working tree, so commits name their own file paths explicitly, and a window
-that needs another window's cooperation asks for it rather than assuming it.
-
-### 6. The session lifecycle — a static graph, then a dynamic one
-
-A session has two phases, and they are deliberately different kinds of thing.
-
-`/valuate` sets the **static graph**: what this session values. Speed versus care,
-exploration versus consolidation, how much verification, what the mission is. It sets
-state and writes a frozen intent document. It does no work.
-
-`/niche` runs the **dynamic graph**: execution in waves, each wave a full
-observe–orient–decide–act–verify loop with an explicit gate at the end. A wave does not
-advance until its verification passes, and "the code looks right" is defined as a
-failure — the gate requires the actual command re-run and its actual output captured.
+Thirteen dispatchable specialists sit under the coordinator — spatial operations, the
+three pipeline stages, specification, review, memory curation, and process health among
+them — each dispatched per task, each short-lived, each leaving a trace.
 
 ```mermaid
 flowchart TB
     H["<b>HUMAN</b> — the only ratifier<br/>sets the mission · approves foundations · resolves conflicts"]
     V["<b>/valuate</b> — the static graph<br/><i>set what this session values. Set state; do no work.</i>"]
-    SEL["<b>SELFLET</b><br/>rank the project's own past traces<br/>against this mission — <i>before the work is scoped</i>"]
+    SEL["<b>SELFLET</b><br/>rank the project's own past traces against this<br/>mission — <i>before the work is scoped</i>"]
     N["<b>/niche</b> — the dynamic graph<br/><i>execute in waves: observe · orient · decide · act · verify</i>"]
     SP["<b>SPECIALISTS</b><br/>dispatched one per task · short-lived<br/>they never message each other"]
     D[("<b>DISK</b> — scratchpads · plans · reports<br/><i>the only thing that survives a context reset</i>")]
@@ -510,222 +554,15 @@ flowchart TB
     style SP fill:#374151,color:#fff
 ```
 
-*The loop that matters is the one on the right: a specialist writes to disk, and the
-next session's memory check reads it back. Specialists never talk to each other — the
-disk is the entire channel. The context window on the left dies several times in a
-normal working day; disk is what crosses that boundary.*
+*The loop that matters is on the right: a specialist writes to disk, and the next
+session's memory check reads it back. The context window dies several times in a normal
+working day; disk is what crosses that boundary.*
 
-### The team
-
-Fourteen agent definitions. One of them (Coordinator) documents the main session's own
-protocol rather than being dispatched — so there are thirteen dispatchable specialists.
-
-| Role | What it does |
-|---|---|
-| **Coordinator** | the main session itself — observes, delegates, synthesizes, reports. Documented, never dispatched. |
-| **SRAI-Spatial** | H3 tessellation, spatial joins, neighbourhood queries, index contracts |
-| **Stage 1 Encoder** | modality processors — satellite, points of interest, road network, aerial |
-| **Stage 2 Architect** | fusion models, graph construction, training pipelines |
-| **Stage 3 Analyst** | probes, clustering, maps, interpretability |
-| **Geometric OR** | turns geometric properties of the hex hierarchy into optimization and speedups |
-| **Spec Writer** | specifications, architecture tradeoffs, decision records |
-| **Execution** | runs scripts and long jobs, reports output |
-| **DevOps** | environment, git, packaging, system diagnostics |
-| **QAQC** | tests, review, visual quality, commit-readiness verdicts |
-| **Librarian** | codebase graph, artifact catalogue, known-issues ledger |
-| **Selflet** | memory curator — ranks past traces against the current mission |
-| **Ego** | process health — watches the coordination itself, not the code |
-| **Mossy** | a per-terminal watcher on a timer; reports only what changed since its last look |
-
----
-
-## What happened when the system audited itself
-
-On 12 August 2026 the harness was pointed at itself, unattended overnight, with a
-hypothesis supplied by the human and framed **to be disproved, not confirmed**:
-
-> *A current-generation model routes around a weak development harness anyway. All this
-> automatically-injected context may be a tax paid for value it does not deliver.*
-
-Three questions were asked of every automatic context-injection point in the system —
-**what selects, on what basis, and how well?** Eighty-nine such surfaces were measured
-and classified. The answer came back genuinely two-sided.
-
-Full report, all figures, and the captured before/after output:
-[`reports/2026-08-12-harness-selection-audit/`](reports/2026-08-12-harness-selection-audit/).
-
-### The finding: the memory system discarded its own rulebook by arithmetic
-
-![The selection funnel](reports/2026-08-12-harness-selection-audit/figures/fig1_selection_funnel.png)
-
-*Measured live, 12 August 2026. Asked to find prior work relevant to a session about
-auditing the harness, the memory filter scored 6,830 candidate traces. The word
-`claude` matched 3,392 of them — 49.7% — and told it nothing, because every trace path
-already begins `.claude/`. The filter only ever sees a file's path plus its first 120
-characters, so all 24 rule files and all 23 hook files scored exactly 1. The shortlist
-is capped at 50 and sorted best-first; 152 traces already scored 2 or higher. **Every
-rule and every hook in the project was therefore excluded by arithmetic, before any
-judgment ran.** Not by a tiebreak, not by a decision — the cut simply landed above
-them. Worse, the document describing the memory system scored zero and was excluded
-from its own retrieval, for the second time in five months.*
-
-### The fix, verified by re-running it — not by reading it
-
-The project's own rules define "the code looks right" as a failed verification. So the
-repair was checked by running the old scoring code and the new scoring code over the
-same corpus, on the same disk, with the scoring logic as the only variable.
-
-![Before and after the mechanism fix](reports/2026-08-12-harness-selection-audit/figures/fig3_replay_before_after.png)
-
-*Rules, hooks and specifications went from **0 of 50 shortlisted traces to 22 of 50**,
-and the memory system's own specification now surfaces in its own retrieval. The second
-test is honestly short of a win: traces dominated by one uninformative version token
-dropped from 36 to **8, not 0** — and some of those 8 genuinely belong to that lane, so
-the count is a coarse proxy rather than a precision measure. Improvement, not victory,
-and reported as such.*
-
-### The verdict, at equal weight on both sides
-
-![The two-sided verdict](reports/2026-08-12-harness-selection-audit/figures/fig5_two_sided_verdict.png)
-
-*The hypothesis was half right, and the half it got wrong matters as much as the half
-it got right. **Automatic context earns its place for procedural governance**: 6 of 15
-path-triggered rules fired during this session and were followed — a model of any
-generation cannot route around project-specific requirements it has no way of knowing
-exist, such as which point-of-interest filter is canonical or which national boundary
-is the correct one. **It did approximately nothing for finding the right document**:
-the three most load-bearing files for this very report were never pushed to the session
-and were all found by hand. **That last item is the session's own report of how it
-worked, not an instrument reading** — it is marked `†` in the figure for exactly that
-reason, because the telemetry that would have measured it was built during the audit
-and cannot see backwards. Separately, and in its own written record, the ranking agent
-was asked what it would have done without the shortlist it was handed. It answered:
-"Same, possibly marginally better." One session, n=1; not a claim about anything
-beyond itself.*
-
-One more measured result deserves its own line, because it is the clearest example of
-a silent failure that looks like success from the inside. The memory cache was
-addressed by a slug of the session's mission statement. When the human revised that
-mission mid-session — a normal, correct thing to do — the address changed, and the same
-session's memory went from **8 items to 0**. No error. No warning. The items were on
-disk the whole time; nothing could reach them, because the thing that revised was also
-the thing that addressed.
-
-### Two defects found, and what they say about the method
-
-The audit found two real faults. Publishing them is the point.
-
-1. **A memory injection had been silently dead — specifically when configured
-   correctly.** A misplaced import inside a fallback branch meant that whenever the
-   normal, correct configuration was in place, the code that surfaces ageing unresolved
-   items crashed — and a fail-open wrapper swallowed the crash. An injection that fails
-   invisibly, and only on the happy path, is the worst available failure signature for
-   a mechanism whose entire job is to stop things being forgotten. Reproduced, then
-   fixed.
-2. **One agent structurally cannot meet the protocol.** The read-only search agent is
-   required, like every working agent, to write a trace. It is granted no write tools.
-   A dispatch to it correctly refused rather than fabricating one, and its findings were
-   lost. Work that agent does leaves no trace for any future retrieval to find, by
-   construction. Still open.
-
-### Why the same thing broke three times
-
-The memory filter has now been rebuilt three times, and the audit made it clear why the
-first two rebuilds did not hold: they replaced the layer *downstream* of the broken one.
-
-```mermaid
-flowchart LR
-    subgraph corpus["ALL PAST TRACES — thousands"]
-        C1["scratchpads"]
-        C2["plans + reports"]
-        C3["specs"]
-    end
-
-    corpus --> S1
-
-    S1["<b>STAGE 1</b><br/>automatic keyword filter<br/><i>decides what is even considered</i><br/>keeps ~50"]
-    S2["<b>STAGE 2</b><br/>ranking agent<br/><i>reorders what Stage 1 allowed through</i>"]
-    CACHE["cache file<br/>on disk"]
-    USE["the session that<br/>needs the memory"]
-
-    S1 --> S2 --> CACHE --> USE
-
-    P1["<b>Rebuild 1</b><br/>replaced the ranker"]
-    P2["<b>Rebuild 2</b><br/>replaced the cache"]
-    P3["<b>Rebuild 3</b><br/>first ever to touch Stage 1"]
-
-    P1 -.-> S2
-    P2 -.-> CACHE
-    P3 -.-> S1
-
-    style S1 fill:#7f1d1d,color:#fff,stroke:#dc2626,stroke-width:3px
-    style S2 fill:#1e3a5f,color:#fff
-    style CACHE fill:#1e3a5f,color:#fff
-    style P1 fill:#374151,color:#fff
-    style P2 fill:#374151,color:#fff
-    style P3 fill:#166534,color:#fff
-```
-
-*Stage 1 decides what is even **admissible**. It was the broken layer the whole time.
-Each earlier rebuild's acceptance test asked "does the new ranker rank well?" rather
-than "does the thing the ranker would need to rank even reach it?" — so the same defect
-survived two complete rebuilds with every check green.*
-
-### The standing test
-
-The record of this mechanism prescribes its own gate, and it is deliberately the one
-the system has historically flunked:
-
-> **The description of the memory system must be findable through the memory system,
-> using a real session mission — not a test string chosen to make it pass.**
-
-It has failed that test twice, five months apart, under two different designs. It
-passes now. It will be re-run at the next change, because passing once is not the
-claim.
-
-### What is being built next — *designed, not yet implemented*
-
-The audit's own conclusion was that the layer which kept failing should be removed
-rather than improved again. A filter that decides in advance what a session is allowed
-to consider will always be blind to something. The replacement pushes a complete
-**index** — one line per trace, each carrying a pointer that is verified to resolve —
-and lets the model read the bodies it decides it needs, at the moment it discovers it
-needs them.
-
-```mermaid
-flowchart TD
-    subgraph T1["TIER 1 — INDEX. Pushed automatically. Cheap. Complete."]
-        direction TB
-        BUILD["build the index from disk<br/><i>one row per trace</i>"]
-        ROW["each row: kind · <b>path:line</b> · one-line summary · date"]
-        VALIDATE["<b>every pointer is checked against disk</b><br/>a row that does not resolve is dropped and counted"]
-        BUILD --> ROW --> VALIDATE
-    end
-
-    subgraph T2["TIER 2 — PULL. The model decides, at the moment of need."]
-        direction TB
-        DECIDE["model hits a real question mid-task"]
-        READ["reads the bodies it chose"]
-        DECIDE --> READ
-    end
-
-    VALIDATE ==>|"index rows only<br/><b>no bodies</b>"| CTX["the working context"]
-    CTX --> DECIDE
-    READ --> WORK["the work"]
-    WORK --> WRITE["<b>write back</b> which traces mattered, and why"]
-    WRITE -.->|"tomorrow's index<br/>is richer for it"| BUILD
-
-    style T1 fill:#0f2942,color:#fff
-    style T2 fill:#14532d,color:#fff
-    style VALIDATE fill:#166534,color:#fff,stroke:#22c55e,stroke-width:2px
-    style CTX fill:#374151,color:#fff
-    style WRITE fill:#166534,color:#fff
-```
-
-*The evidence this rests on is uncomfortable and worth stating plainly: on two
-consecutive measurements, the pushed shortlist did not beat the model simply going and
-looking for itself. **This design is written up and not yet built** — it is included
-here because the reasoning is the interesting part, not because it has shipped.*
+The process is audited with the same discipline as the pipeline. The most recent audit
+turned the system on itself — measuring what its own memory machinery actually selects,
+against a hypothesis supplied to be disproved — and is published in full, including the
+two defects it found and the places where the evidence is a session's self-report rather
+than an instrument reading: [`reports/2026-08-12-harness-selection-audit/`](reports/2026-08-12-harness-selection-audit/).
 
 ---
 

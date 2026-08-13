@@ -1,0 +1,23 @@
+source_runs: []
+source_artifacts:
+- reports/2026-07-19-sharpen-vs-smooth/data/probe_cells_summary.csv
+- reports/2026-07-19-sharpen-vs-smooth/data/stratifier_bins.csv
+plot_config:
+  figure: probe_dose_response
+  dose_axis:
+  - R10k10e
+  - R10k5e
+  - R10k1e
+  - C10
+  - U10_lam0p25
+  - U10_lam0p5
+  - U10_lam1
+  - U10_lam2
+  - U10_lam4
+  bins: stratifier_bins.csv
+  metric: r2 seed-avg
+git_commit: fb1543fc5cf9f38599236ad747bead37d6de248a
+started_at: '2026-07-20T06:48:24+00:00'
+ended_at: '2026-07-20T06:48:24+00:00'
+producer_script: scripts/one_off/2026-07-20-sharpen-summary-figs.py
+regenerated_from: scripts/one_off/2026-07-20-sharpen-summary-figs.py

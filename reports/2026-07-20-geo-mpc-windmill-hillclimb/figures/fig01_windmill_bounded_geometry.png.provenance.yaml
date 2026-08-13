@@ -1,0 +1,24 @@
+source_runs: []
+source_artifacts:
+- stage2_fusion/mpc/windmill.py
+- data/study_areas/south_holland/regions_gdf/south_holland_res9.parquet
+plot_config:
+  plot: windmill_geometry_real_h3
+  image_radius: 8
+  core_radii:
+  - 1
+  - 2
+  - 3
+  smr_panels:
+  - null
+  - 5
+  - 4
+  n_sectors: 6
+  anchor_hex: 89196bb0b9bffff
+  geometry: real H3 res9 cell polygons (srai h3_to_geoseries), EPSG:28992
+git_commit: 902d6d0eb6c22d7d429d550b8e8806f00dc0d71e
+git_dirty: true
+started_at: '2026-07-21T17:53:20+00:00'
+ended_at: '2026-07-21T17:53:20+00:00'
+producer_script: scripts/one_off/2026-07-20-hillclimb-figure-suite.py
+schema_version: '1.0'
