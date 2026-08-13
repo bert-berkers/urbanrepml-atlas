@@ -1,0 +1,52 @@
+# Figure provenance -- harness selection audit, 2026-08-12
+# generated: 2026-08-12T15:32:05
+producer_script: scripts/one_off/2026-08-12-harness-audit-figures.py
+session: russet-burning-river
+token_method: chars/4-approx  # line and char counts are exact
+ledger_live_from: "2026-08-12T14:23"  # mid-session; delta computation validated on SYNTHETIC Read events
+ledger_scope: |
+  The .claude/ledger telemetry instruments FUTURE sessions and cannot
+  retroactively measure this one. Consequences, both marked in-figure:
+  (1) fig2 panel c spawn count is a LOWER BOUND, not a session total;
+  (2) the 'sources never injected' item in fig5 is a session SELF-REPORT
+      (corroborated by CARTOGRAPHY.md section 5), not an instrument reading.
+  All other figure numbers come from the injection-cost census, REPLAY.md
+  or CARTOGRAPHY.md and are measurements.
+figures:
+  - figure: fig1_selection_funnel.png
+    regenerated_from: scripts/one_off/2026-08-12-harness-audit-figures.py::fig_fig1
+    producer_script: scripts/one_off/2026-08-12-harness-audit-figures.py
+    data_sources:
+      - "CARTOGRAPHY.md \u00a72 row 7"
+      - "REPLAY.md \u00a7Reconciliation"
+    note: "Score histogram and 50-row cut measured from the live /valuate dispatch."
+  - figure: fig2_injection_cost.png
+    regenerated_from: scripts/one_off/2026-08-12-harness-audit-figures.py::fig_fig2
+    producer_script: scripts/one_off/2026-08-12-harness-audit-figures.py
+    data_sources:
+      - "census JSON totals"
+      - "census MD \u00a7three totals"
+      - "census MD \u00a7five most expensive"
+      - ".claude/ledger/raw/2026-08-12-russet-burning-river.jsonl (spawn count, lower bound \u2014 ledger live from 14:23, mid-session)"
+    note: "Per-surface costs exercised or static per the census's own measurement_kind field. The spawn count is a LOWER BOUND (>=9), not a measured session total: the ledger began recording mid-session and cannot see earlier spawns."
+  - figure: fig3_replay_before_after.png
+    regenerated_from: scripts/one_off/2026-08-12-harness-audit-figures.py::fig_fig3
+    producer_script: scripts/one_off/2026-08-12-harness-audit-figures.py
+    data_sources:
+      - "REPLAY.md Intent 1 + Intent 2 tables"
+    note: "Before/after captured in one harness run; v2 residual reported unrounded."
+  - figure: fig4_selector_type_map.png
+    regenerated_from: scripts/one_off/2026-08-12-harness-audit-figures.py::fig_fig4
+    producer_script: scripts/one_off/2026-08-12-harness-audit-figures.py
+    data_sources:
+      - "CARTOGRAPHY.md \u00a72 table"
+      - "luhmann_selection_and_the_harness.md \u00a76"
+    note: "One box per cartography row; box position = the binding link, not the whole chain."
+  - figure: fig5_two_sided_verdict.png
+    regenerated_from: scripts/one_off/2026-08-12-harness-audit-figures.py::fig_fig5
+    producer_script: scripts/one_off/2026-08-12-harness-audit-figures.py
+    data_sources:
+      - "CARTOGRAPHY.md \u00a75"
+      - "RULE_CORPUS_PROPOSAL.md \u00a76"
+      - "PROPOSALS.md"
+    note: "Deliberately balanced: four items per side, equal area, equal type size. The dagger-marked item is session self-report (corroborated by CARTOGRAPHY.md S5), NOT an instrument measurement -- the ledger went live 14:23, mid-session; unmarked items are documented measurements."
