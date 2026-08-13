@@ -1,0 +1,6 @@
+# Ring-agg res9 K=10 canonical re-baseline arms (stone-gathering-storm 2026-07-20)
+# arm_id<TAB>path  — 4 weighting schemes on the canonical 178D res9 concat
+R9k10_exp	data/study_areas/netherlands/stage2_multimodal/ring_agg/embeddings/netherlands_res9_2022.parquet
+R9k10_log	data/study_areas/netherlands/stage2_multimodal/ring_agg/embeddings/netherlands_res9_2022_k10_logarithmic.parquet
+R9k10_lin	data/study_areas/netherlands/stage2_multimodal/ring_agg/embeddings/netherlands_res9_2022_k10_linear.parquet
+R9k10_flat	data/study_areas/netherlands/stage2_multimodal/ring_agg/embeddings/netherlands_res9_2022_k10_flat.parquet

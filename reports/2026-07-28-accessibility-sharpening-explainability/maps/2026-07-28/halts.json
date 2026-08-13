@@ -1,0 +1,80 @@
+{
+  "campaign": "2026-07-28-accessibility-sharpening-explainability",
+  "seed": 42,
+  "generated_at": "2026-07-28T22:02:32+00:00",
+  "producer_script": "scripts/one_off/2026-07-28-acc-residual-map-battery.py",
+  "stop_rule_source": "residual/{row}_s42/map_r2.json::stop_rules_fired  (producer scripts/one_off/2026-07-28-acc-residual-subspace.py)",
+  "vis_halting_rules": [
+    "SR-1",
+    "SR-3"
+  ],
+  "halt_semantics": "SR-1/SR-3 halt this row's RES-b, RES-c, VIS-1, VIS-2 per the frozen stop-rule table; SHARP-1/2 continue, so VIS-3 is still rendered.",
+  "any_halt": false,
+  "rows": {
+    "plain": {
+      "row": "plain",
+      "label": "Plain U-Net",
+      "seed": 42,
+      "stop_rules_fired": [],
+      "vis_halted_by": [],
+      "vis1_rendered": true,
+      "vis2_rendered": true,
+      "vis3_rendered": true,
+      "collapse_caveat": false,
+      "map_r2_json": "C:/Users/Bert Berkers/PycharmProjects/UrbanRepML/data/study_areas/netherlands/acc_sharpening/2026-07-28/residual/plain_s42/map_r2.json",
+      "frame_hexes": 482706
+    },
+    "gvae": {
+      "row": "gvae",
+      "label": "Gaussian-VAE",
+      "seed": 42,
+      "stop_rules_fired": [],
+      "vis_halted_by": [],
+      "vis1_rendered": true,
+      "vis2_rendered": true,
+      "vis3_rendered": true,
+      "collapse_caveat": true,
+      "map_r2_json": "C:/Users/Bert Berkers/PycharmProjects/UrbanRepML/data/study_areas/netherlands/acc_sharpening/2026-07-28/residual/gvae_s42/map_r2.json",
+      "frame_hexes": 482706
+    },
+    "pvae": {
+      "row": "pvae",
+      "label": "Poisson-VAE",
+      "seed": 42,
+      "stop_rules_fired": [],
+      "vis_halted_by": [],
+      "vis1_rendered": true,
+      "vis2_rendered": true,
+      "vis3_rendered": true,
+      "collapse_caveat": false,
+      "map_r2_json": "C:/Users/Bert Berkers/PycharmProjects/UrbanRepML/data/study_areas/netherlands/acc_sharpening/2026-07-28/residual/pvae_s42/map_r2.json",
+      "frame_hexes": 482706
+    },
+    "nag_s0": {
+      "row": "nag_s0",
+      "label": "NAG-S0 (orthogonal core)",
+      "seed": 42,
+      "stop_rules_fired": [],
+      "vis_halted_by": [],
+      "vis1_rendered": true,
+      "vis2_rendered": true,
+      "vis3_rendered": true,
+      "collapse_caveat": false,
+      "map_r2_json": "C:/Users/Bert Berkers/PycharmProjects/UrbanRepML/data/study_areas/netherlands/acc_sharpening/2026-07-28/residual/nag_s0_s42/map_r2.json",
+      "frame_hexes": 482706
+    },
+    "nag_s1": {
+      "row": "nag_s1",
+      "label": "NAG-S1 (paper-faithful)",
+      "seed": 42,
+      "stop_rules_fired": [],
+      "vis_halted_by": [],
+      "vis1_rendered": true,
+      "vis2_rendered": true,
+      "vis3_rendered": true,
+      "collapse_caveat": false,
+      "map_r2_json": "C:/Users/Bert Berkers/PycharmProjects/UrbanRepML/data/study_areas/netherlands/acc_sharpening/2026-07-28/residual/nag_s1_s42/map_r2.json",
+      "frame_hexes": 482706
+    }
+  }
+}

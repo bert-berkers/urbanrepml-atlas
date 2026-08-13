@@ -1,0 +1,32 @@
+2026-07-28 22:26:01,767 INFO campaign=2026-07-28-accessibility-sharpening-explainability | data_root=C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\stage2_multimodal | out_root=C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28 | frame=frozen campaign (482706 x 64)
+2026-07-28 22:26:02,512 INFO preflight c01_plain_acc          s42 -> PASS
+2026-07-28 22:26:03,269 INFO preflight c01_plain_acc          s43 -> PASS
+2026-07-28 22:26:04,072 INFO preflight c01_plain_acc          s44 -> PASS
+2026-07-28 22:26:04,863 INFO preflight c02_plain_lattice      s42 -> PASS
+2026-07-28 22:26:05,609 INFO preflight c02_plain_lattice      s43 -> PASS
+2026-07-28 22:26:06,328 INFO preflight c02_plain_lattice      s44 -> PASS
+2026-07-28 22:26:07,042 INFO preflight c03_gvae_acc           s42 -> PASS
+2026-07-28 22:26:07,768 INFO preflight c03_gvae_acc           s43 -> PASS
+2026-07-28 22:26:08,518 INFO preflight c03_gvae_acc           s44 -> PASS
+2026-07-28 22:26:09,287 INFO preflight c04_gvae_lattice       s42 -> PASS
+2026-07-28 22:26:10,052 INFO preflight c04_gvae_lattice       s43 -> PASS
+2026-07-28 22:26:10,814 INFO preflight c04_gvae_lattice       s44 -> PASS
+2026-07-28 22:26:11,590 INFO preflight c05_pvae_acc           s42 -> PASS
+2026-07-28 22:26:12,339 INFO preflight c05_pvae_acc           s43 -> PASS
+2026-07-28 22:26:13,114 INFO preflight c05_pvae_acc           s44 -> PASS
+2026-07-28 22:26:13,864 INFO preflight c06_pvae_lattice       s42 -> PASS
+2026-07-28 22:26:14,629 INFO preflight c06_pvae_lattice       s43 -> PASS
+2026-07-28 22:26:15,379 INFO preflight c06_pvae_lattice       s44 -> PASS
+2026-07-28 22:26:16,194 INFO preflight c07_nag_s0_acc         s42 -> PASS
+2026-07-28 22:26:16,939 INFO preflight c07_nag_s0_acc         s43 -> PASS
+2026-07-28 22:26:17,754 INFO preflight c07_nag_s0_acc         s44 -> PASS
+2026-07-28 22:26:18,495 INFO preflight c08_nag_s0_lattice     s42 -> PASS
+2026-07-28 22:26:19,267 INFO preflight c08_nag_s0_lattice     s43 -> PASS
+2026-07-28 22:26:20,039 INFO preflight c08_nag_s0_lattice     s44 -> PASS
+2026-07-28 22:26:20,799 INFO preflight c09_nag_s1_acc         s42 -> PASS
+2026-07-28 22:26:21,544 INFO preflight c09_nag_s1_acc         s43 -> PASS
+2026-07-28 22:26:22,273 INFO preflight c09_nag_s1_acc         s44 -> PASS
+2026-07-28 22:26:23,057 INFO preflight c10_nag_s1_lattice     s42 -> PASS
+2026-07-28 22:26:23,858 INFO preflight c10_nag_s1_lattice     s43 -> PASS
+2026-07-28 22:26:24,606 INFO preflight c10_nag_s1_lattice     s44 -> PASS
+2026-07-28 22:26:24,660 INFO preflight report -> C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\local_contrast\preflight\preflight_20260728T222624.json (30 checked, 0 flagged)

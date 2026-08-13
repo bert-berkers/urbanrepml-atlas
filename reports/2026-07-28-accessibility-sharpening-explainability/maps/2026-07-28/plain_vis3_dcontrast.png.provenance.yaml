@@ -1,0 +1,48 @@
+source_runs:
+- 2026-07-28_plain_s42
+source_artifacts:
+- data/study_areas/netherlands/acc_sharpening/2026-07-28/local_contrast/cosine/c01_plain_acc_s42.parquet
+- data/study_areas/netherlands/acc_sharpening/2026-07-28/local_contrast/cosine/c02_plain_lattice_s42.parquet
+plot_config:
+  campaign: 2026-07-28-accessibility-sharpening-explainability
+  cell: VIS-3
+  objective_row: plain
+  seed: 42
+  study_area: netherlands
+  h3_resolution: 9
+  frame_hexes: 482706
+  frame_scope: embedding-only (no target join)
+  coloring: RdBu_r-sym-p98
+  raster_w: 2000
+  raster_h: 2400
+  raster_note: full per-panel resolution, NEVER divided by panel count (viz-discipline);
+    polygon fill via render.aggregate, so the stamp = max(1, 11 - resolution) knob
+    does not apply
+  render_path: geopandas-direct
+  colour_limits_scope: computed once on the full-NL frame, reused for the SH zoom
+  sh_zoom_bbox_epsg28992:
+  - 48120.0
+  - 407743.0
+  - 130564.0
+  - 482534.0
+  sh_zoom_derivation: centroid-within data/study_areas/south_holland/area_gdf/south_holland_boundary.parquet
+    (source-battery convention)
+  regenerated_from: scripts/one_off/2026-07-28-acc-residual-map-battery.py::render_row
+  variant: factual titles baked in raster; internal-report surface per viz-discipline
+    chrome calibration -- no A/B working framing (D62)
+  description: 'VIS-3 Plain U-Net: signed local-contrast difference (accessibility
+    - lattice), seed 42'
+  data_vintage: 2022
+  prereg: reports/2026-07-28-accessibility-sharpening-explainability/PREREGISTRATION.md
+  vmin: -0.0018643560325049405
+  vmax: 0.0018643560325049405
+  frac_positive: 0.4848479198518353
+  contrast_col: ring1_cosine_distance
+  upstream_stop_rules_fired: []
+  vis_halted_by: []
+git_commit: bb721968093e17bfd0bca5fbb46f1509d45ac8ec
+git_dirty: true
+started_at: '2026-07-28T21:59:58+00:00'
+ended_at: '2026-07-28T21:59:58+00:00'
+producer_script: scripts/one_off/2026-07-28-acc-residual-map-battery.py
+schema_version: '1.0'

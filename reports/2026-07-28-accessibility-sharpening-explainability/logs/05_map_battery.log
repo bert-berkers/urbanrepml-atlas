@@ -1,0 +1,89 @@
+Campaign : 2026-07-28-accessibility-sharpening-explainability
+Residuals: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual
+Contrast : C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\local_contrast\cosine
+Output   : C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\reports\2026-07-28-accessibility-sharpening-explainability\maps\2026-07-28
+Rows     : ['plain', 'gvae', 'pvae', 'nag_s0', 'nag_s1']  (seed 42)
+
+=== stop-rule pre-flight (residual lane receipts) ===
+  plain   stop_rules_fired=[]           clear   [map_r2.json]
+  gvae    stop_rules_fired=[]           clear   [map_r2.json]
+  pvae    stop_rules_fired=[]           clear   [map_r2.json]
+  nag_s0  stop_rules_fired=[]           clear   [map_r2.json]
+  nag_s1  stop_rules_fired=[]           clear   [map_r2.json]
+
+=== row plain (Plain U-Net) ===
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved plain_vis1_residnorm.png (+ plain_vis1_residnorm.png.provenance.yaml)
+Applying PCA: 64D -> 3D...
+PCA variance retained: 0.410
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved plain_vis2_residpcrgb.png (+ plain_vis2_residpcrgb.png.provenance.yaml)
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved plain_vis3_dcontrast.png (+ plain_vis3_dcontrast.png.provenance.yaml)
+    frame=482,706 hexes | SH bbox=(48120, 407743, 130564, 482534) | mean(||R||)=0.1861 | mean(delta)=-0.000011 | frac(delta>0)=0.485
+
+=== row gvae (Gaussian-VAE) [COLLAPSE-CAVEAT] ===
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved gvae_vis1_residnorm.png (+ gvae_vis1_residnorm.png.provenance.yaml)
+Applying PCA: 64D -> 3D...
+PCA variance retained: 0.944
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved gvae_vis2_residpcrgb.png (+ gvae_vis2_residpcrgb.png.provenance.yaml)
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved gvae_vis3_dcontrast.png (+ gvae_vis3_dcontrast.png.provenance.yaml)
+    frame=482,706 hexes | SH bbox=(48120, 407743, 130564, 482534) | mean(||R||)=0.8028 | mean(delta)=+0.003988 | frac(delta>0)=1.000
+
+=== row pvae (Poisson-VAE) ===
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved pvae_vis1_residnorm.png (+ pvae_vis1_residnorm.png.provenance.yaml)
+Applying PCA: 64D -> 3D...
+PCA variance retained: 0.752
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved pvae_vis2_residpcrgb.png (+ pvae_vis2_residpcrgb.png.provenance.yaml)
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved pvae_vis3_dcontrast.png (+ pvae_vis3_dcontrast.png.provenance.yaml)
+    frame=482,706 hexes | SH bbox=(48120, 407743, 130564, 482534) | mean(||R||)=3.7119 | mean(delta)=+0.164715 | frac(delta>0)=0.982
+
+=== row nag_s0 (NAG-S0 (orthogonal core)) ===
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved nag_s0_vis1_residnorm.png (+ nag_s0_vis1_residnorm.png.provenance.yaml)
+Applying PCA: 64D -> 3D...
+PCA variance retained: 0.626
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved nag_s0_vis2_residpcrgb.png (+ nag_s0_vis2_residpcrgb.png.provenance.yaml)
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved nag_s0_vis3_dcontrast.png (+ nag_s0_vis3_dcontrast.png.provenance.yaml)
+    frame=482,706 hexes | SH bbox=(48120, 407743, 130564, 482534) | mean(||R||)=0.2795 | mean(delta)=+0.000519 | frac(delta>0)=0.858
+
+=== row nag_s1 (NAG-S1 (paper-faithful)) ===
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved nag_s1_vis1_residnorm.png (+ nag_s1_vis1_residnorm.png.provenance.yaml)
+Applying PCA: 64D -> 3D...
+PCA variance retained: 0.411
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved nag_s1_vis2_residpcrgb.png (+ nag_s1_vis2_residpcrgb.png.provenance.yaml)
+join_geometry: res9 coverage rate_grid=0.864 (482706/558626 canonical hexes). Artifact covers <95% of the canonical grid — likely stale-grid (South Limburg / coastline may be absent). OK for machinery replays; NOT for publication numbers (two-sided gate, see ops plan).
+    saved nag_s1_vis3_dcontrast.png (+ nag_s1_vis3_dcontrast.png.provenance.yaml)
+    frame=482,706 hexes | SH bbox=(48120, 407743, 130564, 482534) | mean(||R||)=0.1712 | mean(delta)=-0.000238 | frac(delta>0)=0.351
+  wrote halts.json (any_halt=False)
+  wrote index.md
+
+=== SUMMARY ===
+15 pages written to C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\reports\2026-07-28-accessibility-sharpening-explainability\maps\2026-07-28
+  plain_vis1_residnorm.png
+  plain_vis2_residpcrgb.png
+  plain_vis3_dcontrast.png
+  gvae_vis1_residnorm.png
+  gvae_vis2_residpcrgb.png
+  gvae_vis3_dcontrast.png
+  pvae_vis1_residnorm.png
+  pvae_vis2_residpcrgb.png
+  pvae_vis3_dcontrast.png
+  nag_s0_vis1_residnorm.png
+  nag_s0_vis2_residpcrgb.png
+  nag_s0_vis3_dcontrast.png
+  nag_s1_vis1_residnorm.png
+  nag_s1_vis2_residpcrgb.png
+  nag_s1_vis3_dcontrast.png
+
+No stop rule fired on any rendered row (all three pages per row).

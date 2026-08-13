@@ -1,0 +1,97 @@
+2026-07-20 20:48:16,994 INFO run_arm_probe_sweep: arm R9k10_exp: loaded 537970 rows x 178 dims, 11 pending cells (rss=1240 MB)
+2026-07-20 20:48:17,209 INFO run_arm_probe_sweep: R9k10_exp__leefbaarometer__lbm__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:48:44,853 INFO run_arm_probe_sweep: DONE R9k10_exp__leefbaarometer__lbm__nl0__seed42: mean_r2=0.2707+/-0.0072 oof=0.2707 (27.8s)
+2026-07-20 20:48:45,242 INFO run_arm_probe_sweep: R9k10_exp__leefbaarometer__fys__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:49:07,121 INFO run_arm_probe_sweep: DONE R9k10_exp__leefbaarometer__fys__nl0__seed42: mean_r2=0.4073+/-0.0108 oof=0.4074 (22.2s)
+2026-07-20 20:49:07,379 INFO run_arm_probe_sweep: R9k10_exp__leefbaarometer__onv__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:49:28,353 INFO run_arm_probe_sweep: DONE R9k10_exp__leefbaarometer__onv__nl0__seed42: mean_r2=0.4905+/-0.0038 oof=0.4905 (21.1s)
+2026-07-20 20:49:28,597 INFO run_arm_probe_sweep: R9k10_exp__leefbaarometer__soc__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:49:49,836 INFO run_arm_probe_sweep: DONE R9k10_exp__leefbaarometer__soc__nl0__seed42: mean_r2=0.6369+/-0.0072 oof=0.6369 (21.4s)
+2026-07-20 20:49:50,082 INFO run_arm_probe_sweep: R9k10_exp__leefbaarometer__vrz__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:50:10,925 INFO run_arm_probe_sweep: DONE R9k10_exp__leefbaarometer__vrz__nl0__seed42: mean_r2=0.7409+/-0.0097 oof=0.7410 (21.0s)
+2026-07-20 20:50:11,207 INFO run_arm_probe_sweep: R9k10_exp__leefbaarometer__won__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:50:31,989 INFO run_arm_probe_sweep: DONE R9k10_exp__leefbaarometer__won__nl0__seed42: mean_r2=0.4474+/-0.0069 oof=0.4475 (21.0s)
+2026-07-20 20:50:32,566 INFO run_arm_probe_sweep: R9k10_exp__rudifun__fsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 20:51:09,782 INFO run_arm_probe_sweep: DONE R9k10_exp__rudifun__fsi__nl0__seed42: mean_r2=0.4988+/-0.0349 oof=0.4960 (37.7s)
+2026-07-20 20:51:10,137 INFO run_arm_probe_sweep: R9k10_exp__rudifun__gsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 20:51:44,472 INFO run_arm_probe_sweep: DONE R9k10_exp__rudifun__gsi__nl0__seed42: mean_r2=0.4532+/-0.0038 oof=0.4532 (34.6s)
+2026-07-20 20:51:44,911 INFO run_arm_probe_sweep: R9k10_exp__rudifun__mxi__nl0__seed42: joined 237062 rows (44.1% of arm, 99.6% of target), 178 dims
+2026-07-20 20:52:14,507 INFO run_arm_probe_sweep: DONE R9k10_exp__rudifun__mxi__nl0__seed42: mean_r2=0.5860+/-0.0044 oof=0.5860 (30.0s)
+2026-07-20 20:52:14,966 INFO run_arm_probe_sweep: R9k10_exp__rudifun__l__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 20:52:49,496 INFO run_arm_probe_sweep: DONE R9k10_exp__rudifun__l__nl0__seed42: mean_r2=0.5571+/-0.0086 oof=0.5569 (34.9s)
+2026-07-20 20:52:49,946 INFO run_arm_probe_sweep: R9k10_exp__rudifun__osr__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 20:53:26,606 INFO run_arm_probe_sweep: DONE R9k10_exp__rudifun__osr__nl0__seed42: mean_r2=0.1253+/-0.0015 oof=0.1253 (37.0s)
+2026-07-20 20:53:26,865 INFO run_arm_probe_sweep: arm R9k10_exp: released (rss=2047 MB)
+2026-07-20 20:53:27,735 INFO run_arm_probe_sweep: arm R9k10_log: loaded 537970 rows x 178 dims, 11 pending cells (rss=3051 MB)
+2026-07-20 20:53:28,065 INFO run_arm_probe_sweep: R9k10_log__leefbaarometer__lbm__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:53:48,874 INFO run_arm_probe_sweep: DONE R9k10_log__leefbaarometer__lbm__nl0__seed42: mean_r2=0.2668+/-0.0068 oof=0.2669 (21.1s)
+2026-07-20 20:53:49,149 INFO run_arm_probe_sweep: R9k10_log__leefbaarometer__fys__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:54:10,393 INFO run_arm_probe_sweep: DONE R9k10_log__leefbaarometer__fys__nl0__seed42: mean_r2=0.4133+/-0.0061 oof=0.4133 (21.4s)
+2026-07-20 20:54:10,648 INFO run_arm_probe_sweep: R9k10_log__leefbaarometer__onv__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:54:31,062 INFO run_arm_probe_sweep: DONE R9k10_log__leefbaarometer__onv__nl0__seed42: mean_r2=0.5220+/-0.0043 oof=0.5220 (20.6s)
+2026-07-20 20:54:31,316 INFO run_arm_probe_sweep: R9k10_log__leefbaarometer__soc__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:54:52,165 INFO run_arm_probe_sweep: DONE R9k10_log__leefbaarometer__soc__nl0__seed42: mean_r2=0.6280+/-0.0043 oof=0.6281 (21.0s)
+2026-07-20 20:54:52,552 INFO run_arm_probe_sweep: R9k10_log__leefbaarometer__vrz__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:55:13,884 INFO run_arm_probe_sweep: DONE R9k10_log__leefbaarometer__vrz__nl0__seed42: mean_r2=0.8588+/-0.0033 oof=0.8588 (21.6s)
+2026-07-20 20:55:14,367 INFO run_arm_probe_sweep: R9k10_log__leefbaarometer__won__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:55:36,188 INFO run_arm_probe_sweep: DONE R9k10_log__leefbaarometer__won__nl0__seed42: mean_r2=0.4387+/-0.0040 oof=0.4387 (22.2s)
+2026-07-20 20:55:36,544 INFO run_arm_probe_sweep: R9k10_log__rudifun__fsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 20:56:13,308 INFO run_arm_probe_sweep: DONE R9k10_log__rudifun__fsi__nl0__seed42: mean_r2=0.5064+/-0.0340 oof=0.5037 (37.0s)
+2026-07-20 20:56:13,981 INFO run_arm_probe_sweep: R9k10_log__rudifun__gsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 20:56:52,207 INFO run_arm_probe_sweep: DONE R9k10_log__rudifun__gsi__nl0__seed42: mean_r2=0.4437+/-0.0071 oof=0.4438 (38.8s)
+2026-07-20 20:56:52,669 INFO run_arm_probe_sweep: R9k10_log__rudifun__mxi__nl0__seed42: joined 237062 rows (44.1% of arm, 99.6% of target), 178 dims
+2026-07-20 20:57:30,181 INFO run_arm_probe_sweep: DONE R9k10_log__rudifun__mxi__nl0__seed42: mean_r2=0.5520+/-0.0048 oof=0.5521 (37.9s)
+2026-07-20 20:57:31,290 INFO run_arm_probe_sweep: R9k10_log__rudifun__l__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 20:58:09,244 INFO run_arm_probe_sweep: DONE R9k10_log__rudifun__l__nl0__seed42: mean_r2=0.5691+/-0.0083 oof=0.5689 (39.0s)
+2026-07-20 20:58:09,978 INFO run_arm_probe_sweep: R9k10_log__rudifun__osr__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 20:58:46,245 INFO run_arm_probe_sweep: DONE R9k10_log__rudifun__osr__nl0__seed42: mean_r2=0.1381+/-0.0052 oof=0.1381 (36.9s)
+2026-07-20 20:58:46,451 INFO run_arm_probe_sweep: arm R9k10_log: released (rss=2061 MB)
+2026-07-20 20:58:46,994 INFO run_arm_probe_sweep: arm R9k10_lin: loaded 537970 rows x 178 dims, 11 pending cells (rss=3061 MB)
+2026-07-20 20:58:47,195 INFO run_arm_probe_sweep: R9k10_lin__leefbaarometer__lbm__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:59:09,343 INFO run_arm_probe_sweep: DONE R9k10_lin__leefbaarometer__lbm__nl0__seed42: mean_r2=0.2658+/-0.0035 oof=0.2658 (22.2s)
+2026-07-20 20:59:09,630 INFO run_arm_probe_sweep: R9k10_lin__leefbaarometer__fys__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:59:32,364 INFO run_arm_probe_sweep: DONE R9k10_lin__leefbaarometer__fys__nl0__seed42: mean_r2=0.4192+/-0.0086 oof=0.4193 (22.9s)
+2026-07-20 20:59:32,623 INFO run_arm_probe_sweep: R9k10_lin__leefbaarometer__onv__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 20:59:55,501 INFO run_arm_probe_sweep: DONE R9k10_lin__leefbaarometer__onv__nl0__seed42: mean_r2=0.5200+/-0.0053 oof=0.5201 (23.1s)
+2026-07-20 20:59:55,769 INFO run_arm_probe_sweep: R9k10_lin__leefbaarometer__soc__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:00:18,629 INFO run_arm_probe_sweep: DONE R9k10_lin__leefbaarometer__soc__nl0__seed42: mean_r2=0.6260+/-0.0043 oof=0.6261 (23.0s)
+2026-07-20 21:00:19,019 INFO run_arm_probe_sweep: R9k10_lin__leefbaarometer__vrz__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:00:41,917 INFO run_arm_probe_sweep: DONE R9k10_lin__leefbaarometer__vrz__nl0__seed42: mean_r2=0.8532+/-0.0034 oof=0.8533 (23.2s)
+2026-07-20 21:00:42,156 INFO run_arm_probe_sweep: R9k10_lin__leefbaarometer__won__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:01:03,508 INFO run_arm_probe_sweep: DONE R9k10_lin__leefbaarometer__won__nl0__seed42: mean_r2=0.4418+/-0.0056 oof=0.4418 (21.5s)
+2026-07-20 21:01:03,920 INFO run_arm_probe_sweep: R9k10_lin__rudifun__fsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 21:01:41,699 INFO run_arm_probe_sweep: DONE R9k10_lin__rudifun__fsi__nl0__seed42: mean_r2=0.5072+/-0.0344 oof=0.5046 (38.1s)
+2026-07-20 21:01:42,060 INFO run_arm_probe_sweep: R9k10_lin__rudifun__gsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 21:02:19,669 INFO run_arm_probe_sweep: DONE R9k10_lin__rudifun__gsi__nl0__seed42: mean_r2=0.4431+/-0.0048 oof=0.4431 (37.9s)
+2026-07-20 21:02:20,160 INFO run_arm_probe_sweep: R9k10_lin__rudifun__mxi__nl0__seed42: joined 237062 rows (44.1% of arm, 99.6% of target), 178 dims
+2026-07-20 21:02:58,053 INFO run_arm_probe_sweep: DONE R9k10_lin__rudifun__mxi__nl0__seed42: mean_r2=0.5468+/-0.0040 oof=0.5468 (38.3s)
+2026-07-20 21:02:58,716 INFO run_arm_probe_sweep: R9k10_lin__rudifun__l__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 21:03:30,536 INFO run_arm_probe_sweep: DONE R9k10_lin__rudifun__l__nl0__seed42: mean_r2=0.5676+/-0.0091 oof=0.5675 (32.4s)
+2026-07-20 21:03:31,006 INFO run_arm_probe_sweep: R9k10_lin__rudifun__osr__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 21:04:00,062 INFO run_arm_probe_sweep: DONE R9k10_lin__rudifun__osr__nl0__seed42: mean_r2=0.1402+/-0.0037 oof=0.1402 (29.4s)
+2026-07-20 21:04:00,268 INFO run_arm_probe_sweep: arm R9k10_lin: released (rss=2653 MB)
+2026-07-20 21:04:00,744 INFO run_arm_probe_sweep: arm R9k10_flat: loaded 537970 rows x 178 dims, 11 pending cells (rss=3147 MB)
+2026-07-20 21:04:00,949 INFO run_arm_probe_sweep: R9k10_flat__leefbaarometer__lbm__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:04:17,854 INFO run_arm_probe_sweep: DONE R9k10_flat__leefbaarometer__lbm__nl0__seed42: mean_r2=0.2408+/-0.0026 oof=0.2408 (17.1s)
+2026-07-20 21:04:18,067 INFO run_arm_probe_sweep: R9k10_flat__leefbaarometer__fys__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:04:38,592 INFO run_arm_probe_sweep: DONE R9k10_flat__leefbaarometer__fys__nl0__seed42: mean_r2=0.3720+/-0.0074 oof=0.3721 (20.7s)
+2026-07-20 21:04:39,231 INFO run_arm_probe_sweep: R9k10_flat__leefbaarometer__onv__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:05:00,897 INFO run_arm_probe_sweep: DONE R9k10_flat__leefbaarometer__onv__nl0__seed42: mean_r2=0.5091+/-0.0062 oof=0.5093 (22.2s)
+2026-07-20 21:05:01,125 INFO run_arm_probe_sweep: R9k10_flat__leefbaarometer__soc__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:05:23,434 INFO run_arm_probe_sweep: DONE R9k10_flat__leefbaarometer__soc__nl0__seed42: mean_r2=0.5737+/-0.0040 oof=0.5738 (22.4s)
+2026-07-20 21:05:23,715 INFO run_arm_probe_sweep: R9k10_flat__leefbaarometer__vrz__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:05:45,658 INFO run_arm_probe_sweep: DONE R9k10_flat__leefbaarometer__vrz__nl0__seed42: mean_r2=0.8730+/-0.0043 oof=0.8730 (22.1s)
+2026-07-20 21:05:45,911 INFO run_arm_probe_sweep: R9k10_flat__leefbaarometer__won__nl0__seed42: joined 131194 rows (24.4% of arm, 100.0% of target), 178 dims
+2026-07-20 21:06:07,563 INFO run_arm_probe_sweep: DONE R9k10_flat__leefbaarometer__won__nl0__seed42: mean_r2=0.4043+/-0.0054 oof=0.4044 (21.8s)
+2026-07-20 21:06:07,933 INFO run_arm_probe_sweep: R9k10_flat__rudifun__fsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 21:06:45,247 INFO run_arm_probe_sweep: DONE R9k10_flat__rudifun__fsi__nl0__seed42: mean_r2=0.4785+/-0.0320 oof=0.4759 (37.6s)
+2026-07-20 21:06:45,670 INFO run_arm_probe_sweep: R9k10_flat__rudifun__gsi__nl0__seed42: joined 238072 rows (44.3% of arm, 100.0% of target), 178 dims
+2026-07-20 21:07:24,437 INFO run_arm_probe_sweep: DONE R9k10_flat__rudifun__gsi__nl0__seed42: mean_r2=0.4065+/-0.0050 oof=0.4066 (39.1s)
+2026-07-20 21:07:25,078 INFO run_arm_probe_sweep: R9k10_flat__rudifun__mxi__nl0__seed42: joined 237062 rows (44.1% of arm, 99.6% of target), 178 dims
+2026-07-20 21:08:02,589 INFO run_arm_probe_sweep: DONE R9k10_flat__rudifun__mxi__nl0__seed42: mean_r2=0.4592+/-0.0044 oof=0.4592 (38.0s)
+2026-07-20 21:08:03,115 INFO run_arm_probe_sweep: R9k10_flat__rudifun__l__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 21:08:40,176 INFO run_arm_probe_sweep: DONE R9k10_flat__rudifun__l__nl0__seed42: mean_r2=0.5333+/-0.0090 oof=0.5332 (37.5s)
+2026-07-20 21:08:40,605 INFO run_arm_probe_sweep: R9k10_flat__rudifun__osr__nl0__seed42: joined 237671 rows (44.2% of arm, 99.8% of target), 178 dims
+2026-07-20 21:09:17,313 INFO run_arm_probe_sweep: DONE R9k10_flat__rudifun__osr__nl0__seed42: mean_r2=0.1359+/-0.0061 oof=0.1359 (37.1s)
+2026-07-20 21:09:17,874 INFO run_arm_probe_sweep: arm R9k10_flat: released (rss=2779 MB)
+2026-07-20 21:09:17,874 INFO run_arm_probe_sweep: === SWEEP DONE: 44 done, 0 skipped, 0 error -> data\study_areas\netherlands\stage3_analysis\2026-07-20-ring-agg-rebaseline-probes\2026-07-20 ===

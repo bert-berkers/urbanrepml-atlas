@@ -1,0 +1,311 @@
+
+==============================================================================
+RES-a1..a5 + RES-c  |  campaign 2026-07-28-accessibility-sharpening-explainability
+  rows  : ['plain', 'gvae', 'pvae', 'nag_s0', 'nag_s1']
+  seeds : [42, 43, 44]
+  output: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual
+==============================================================================
+C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\scripts\one_off\2026-07-28-acc-residual-subspace.py:277: UserWarning: Geometry is in a geographic CRS. Results from 'centroid' are likely incorrect. Use 'GeoSeries.to_crs()' to re-project geometries to a projected CRS before this operation.
+
+  sub["geometry"] = sub.geometry.centroid
+[22:26:28] ring-1 weights: building via SRAI H3Neighbourhood ...
+ring-1 weights:   0%|          | 0/482706 [00:00<?, ?hex/s]ring-1 weights: 100%|██████████| 482706/482706 [00:04<00:00, 120012.52hex/s]
+[22:26:34] ring-1 weights: 2,885,418 edges, mean degree 5.978, isolated pruned 0 (5.4s)
+[22:26:34] === plain s42: abl_c01_plain_acc_s42 vs abl_c02_plain_lattice_s42 ===
+[22:26:36] computing 10 km spatial-block folds (seed=42) ...
+
+==============================================================================
+FOLD-ASSIGNMENT NOTICE (seed=42): 2 of 482,706 hexagon centroids fell outside every 10 km block (a `within`-predicate artifact on the block grid's outer edge) and were assigned to fold 1, mirroring the source campaign's
+  stage3_analysis/dnn_probe.py::create_spatial_blocks convention.
+  This count is recorded as `n_centroids_outside_blocks` in every map_r2.json -- it is reported, not absorbed.
+==============================================================================
+[22:26:37] [plain s42] fitting lattice -> acc (out-of-fold ridge) ...
+[22:27:03] [plain s42] forward R2=0.952523 f_resid=0.047477  (25.5s)
+[22:27:03] [plain s42] fitting acc -> lattice (symmetry check) ...
+[22:27:29] [plain s42] Moran's I of ||R|| (999 permutations) ...
+[22:27:42] [plain s42] Moran I=0.5232 p=0.0010 (13.5s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\plain_s42
+[22:27:42] === plain s43: abl_c01_plain_acc_s43 vs abl_c02_plain_lattice_s43 ===
+[22:27:43] computing 10 km spatial-block folds (seed=43) ...
+
+==============================================================================
+FOLD-ASSIGNMENT NOTICE (seed=43): 2 of 482,706 hexagon centroids fell outside every 10 km block (a `within`-predicate artifact on the block grid's outer edge) and were assigned to fold 1, mirroring the source campaign's
+  stage3_analysis/dnn_probe.py::create_spatial_blocks convention.
+  This count is recorded as `n_centroids_outside_blocks` in every map_r2.json -- it is reported, not absorbed.
+==============================================================================
+[22:27:44] [plain s43] fitting lattice -> acc (out-of-fold ridge) ...
+[22:28:09] [plain s43] forward R2=0.954704 f_resid=0.045296  (24.1s)
+[22:28:09] [plain s43] fitting acc -> lattice (symmetry check) ...
+[22:28:34] [plain s43] Moran's I of ||R|| (999 permutations) ...
+[22:28:49] [plain s43] Moran I=0.5084 p=0.0010 (14.1s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\plain_s43
+[22:28:49] === plain s44: abl_c01_plain_acc_s44 vs abl_c02_plain_lattice_s44 ===
+[22:28:50] computing 10 km spatial-block folds (seed=44) ...
+
+==============================================================================
+FOLD-ASSIGNMENT NOTICE (seed=44): 2 of 482,706 hexagon centroids fell outside every 10 km block (a `within`-predicate artifact on the block grid's outer edge) and were assigned to fold 1, mirroring the source campaign's
+  stage3_analysis/dnn_probe.py::create_spatial_blocks convention.
+  This count is recorded as `n_centroids_outside_blocks` in every map_r2.json -- it is reported, not absorbed.
+==============================================================================
+[22:28:51] [plain s44] fitting lattice -> acc (out-of-fold ridge) ...
+[22:29:15] [plain s44] forward R2=0.968721 f_resid=0.031279  (23.5s)
+[22:29:15] [plain s44] fitting acc -> lattice (symmetry check) ...
+[22:29:41] [plain s44] Moran's I of ||R|| (999 permutations) ...
+[22:29:54] [plain s44] Moran I=0.5217 p=0.0010 (13.7s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\plain_s44
+[22:29:54] === gvae s42: abl_c03_gvae_acc_s42 vs abl_c04_gvae_lattice_s42 ===
+[22:29:55] [gvae s42] fitting lattice -> acc (out-of-fold ridge) ...
+[22:30:19] [gvae s42] forward R2=-0.002997 f_resid=1.002997  (23.4s)
+[22:30:19] [gvae s42] fitting acc -> lattice (symmetry check) ...
+[22:30:44] [gvae s42] Moran's I of ||R|| (999 permutations) ...
+[22:30:58] [gvae s42] Moran I=0.6941 p=0.0010 (13.1s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\gvae_s42
+[22:30:58] === gvae s43: abl_c03_gvae_acc_s43 vs abl_c04_gvae_lattice_s43 ===
+[22:30:59] [gvae s43] fitting lattice -> acc (out-of-fold ridge) ...
+[22:31:23] [gvae s43] forward R2=-0.000613 f_resid=1.000613  (23.8s)
+[22:31:23] [gvae s43] fitting acc -> lattice (symmetry check) ...
+[22:31:48] [gvae s43] Moran's I of ||R|| (999 permutations) ...
+[22:32:03] [gvae s43] Moran I=0.3151 p=0.0010 (14.3s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\gvae_s43
+[22:32:03] === gvae s44: abl_c03_gvae_acc_s44 vs abl_c04_gvae_lattice_s44 ===
+[22:32:04] [gvae s44] fitting lattice -> acc (out-of-fold ridge) ...
+[22:32:28] [gvae s44] forward R2=0.089682 f_resid=0.910318  (23.8s)
+[22:32:28] [gvae s44] fitting acc -> lattice (symmetry check) ...
+[22:32:54] [gvae s44] Moran's I of ||R|| (999 permutations) ...
+[22:33:07] [gvae s44] Moran I=0.4129 p=0.0010 (13.5s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\gvae_s44
+[22:33:07] === pvae s42: abl_c05_pvae_acc_s42 vs abl_c06_pvae_lattice_s42 ===
+[22:33:09] [pvae s42] fitting lattice -> acc (out-of-fold ridge) ...
+[22:33:32] [pvae s42] forward R2=0.465119 f_resid=0.534881  (23.6s)
+[22:33:32] [pvae s42] fitting acc -> lattice (symmetry check) ...
+[22:33:58] [pvae s42] Moran's I of ||R|| (999 permutations) ...
+[22:34:11] [pvae s42] Moran I=0.2804 p=0.0010 (13.0s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\pvae_s42
+[22:34:11] === pvae s43: abl_c05_pvae_acc_s43 vs abl_c06_pvae_lattice_s43 ===
+[22:34:12] [pvae s43] fitting lattice -> acc (out-of-fold ridge) ...
+[22:34:37] [pvae s43] forward R2=0.466138 f_resid=0.533862  (24.4s)
+[22:34:37] [pvae s43] fitting acc -> lattice (symmetry check) ...
+[22:35:02] [pvae s43] Moran's I of ||R|| (999 permutations) ...
+[22:35:15] [pvae s43] Moran I=0.2995 p=0.0010 (13.2s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\pvae_s43
+[22:35:15] === pvae s44: abl_c05_pvae_acc_s44 vs abl_c06_pvae_lattice_s44 ===
+[22:35:16] [pvae s44] fitting lattice -> acc (out-of-fold ridge) ...
+[22:35:41] [pvae s44] forward R2=0.452201 f_resid=0.547799  (24.5s)
+[22:35:41] [pvae s44] fitting acc -> lattice (symmetry check) ...
+[22:36:06] [pvae s44] Moran's I of ||R|| (999 permutations) ...
+[22:36:20] [pvae s44] Moran I=0.3047 p=0.0010 (14.0s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\pvae_s44
+[22:36:21] === nag_s0 s42: abl_c07_nag_s0_acc_s42 vs abl_c08_nag_s0_lattice_s42 ===
+[22:36:22] [nag_s0 s42] fitting lattice -> acc (out-of-fold ridge) ...
+[22:36:46] [nag_s0 s42] forward R2=0.815551 f_resid=0.184449  (24.2s)
+[22:36:46] [nag_s0 s42] fitting acc -> lattice (symmetry check) ...
+[22:37:12] [nag_s0 s42] Moran's I of ||R|| (999 permutations) ...
+[22:37:26] [nag_s0 s42] Moran I=0.4592 p=0.0010 (13.9s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\nag_s0_s42
+[22:37:26] === nag_s0 s43: abl_c07_nag_s0_acc_s43 vs abl_c08_nag_s0_lattice_s43 ===
+[22:37:27] [nag_s0 s43] fitting lattice -> acc (out-of-fold ridge) ...
+[22:37:52] [nag_s0 s43] forward R2=0.950969 f_resid=0.049031  (24.2s)
+[22:37:52] [nag_s0 s43] fitting acc -> lattice (symmetry check) ...
+[22:38:18] [nag_s0 s43] Moran's I of ||R|| (999 permutations) ...
+[22:38:32] [nag_s0 s43] Moran I=0.3767 p=0.0010 (13.5s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\nag_s0_s43
+[22:38:32] === nag_s0 s44: abl_c07_nag_s0_acc_s44 vs abl_c08_nag_s0_lattice_s44 ===
+[22:38:33] [nag_s0 s44] fitting lattice -> acc (out-of-fold ridge) ...
+[22:38:57] [nag_s0 s44] forward R2=0.894692 f_resid=0.105308  (24.6s)
+[22:38:57] [nag_s0 s44] fitting acc -> lattice (symmetry check) ...
+[22:39:24] [nag_s0 s44] Moran's I of ||R|| (999 permutations) ...
+[22:39:38] [nag_s0 s44] Moran I=0.3202 p=0.0010 (14.1s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\nag_s0_s44
+[22:39:38] === nag_s1 s42: abl_c09_nag_s1_acc_s42 vs abl_c10_nag_s1_lattice_s42 ===
+[22:39:40] [nag_s1 s42] fitting lattice -> acc (out-of-fold ridge) ...
+[22:40:04] [nag_s1 s42] forward R2=0.955604 f_resid=0.044396  (24.6s)
+[22:40:04] [nag_s1 s42] fitting acc -> lattice (symmetry check) ...
+[22:40:31] [nag_s1 s42] Moran's I of ||R|| (999 permutations) ...
+[22:40:46] [nag_s1 s42] Moran I=0.5233 p=0.0010 (14.8s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\nag_s1_s42
+[22:40:46] === nag_s1 s43: abl_c09_nag_s1_acc_s43 vs abl_c10_nag_s1_lattice_s43 ===
+[22:40:47] [nag_s1 s43] fitting lattice -> acc (out-of-fold ridge) ...
+[22:41:11] [nag_s1 s43] forward R2=0.953319 f_resid=0.046681  (24.4s)
+[22:41:11] [nag_s1 s43] fitting acc -> lattice (symmetry check) ...
+[22:41:38] [nag_s1 s43] Moran's I of ||R|| (999 permutations) ...
+[22:41:52] [nag_s1 s43] Moran I=0.5257 p=0.0010 (13.5s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\nag_s1_s43
+[22:41:52] === nag_s1 s44: abl_c09_nag_s1_acc_s44 vs abl_c10_nag_s1_lattice_s44 ===
+[22:41:53] [nag_s1 s44] fitting lattice -> acc (out-of-fold ridge) ...
+[22:42:17] [nag_s1 s44] forward R2=0.946312 f_resid=0.053688  (23.7s)
+[22:42:17] [nag_s1 s44] fitting acc -> lattice (symmetry check) ...
+[22:42:44] [nag_s1 s44] Moran's I of ||R|| (999 permutations) ...
+[22:42:58] [nag_s1 s44] Moran I=0.5383 p=0.0010 (13.8s)  ->  C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\nag_s1_s44
+
+==============================================================================
+RES-a + RES-c COMPLETE
+[
+  {
+    "row": "plain",
+    "seed": 42,
+    "f_resid": 0.04747700120446896,
+    "r2_forward": 0.952522998795531,
+    "r2_symmetry": 0.9573205695789483,
+    "res_c": "COMPUTED",
+    "morans_i": 0.5231517200873442,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "plain",
+    "seed": 43,
+    "f_resid": 0.045295584090678576,
+    "r2_forward": 0.9547044159093214,
+    "r2_symmetry": 0.9520479987506143,
+    "res_c": "COMPUTED",
+    "morans_i": 0.5084126747733787,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "plain",
+    "seed": 44,
+    "f_resid": 0.03127881646483388,
+    "r2_forward": 0.9687211835351661,
+    "r2_symmetry": 0.9596682514204546,
+    "res_c": "COMPUTED",
+    "morans_i": 0.521659940260797,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "gvae",
+    "seed": 42,
+    "f_resid": 1.0029970438284597,
+    "r2_forward": -0.0029970438284597184,
+    "r2_symmetry": -0.0001137561278640768,
+    "res_c": "COMPUTED",
+    "morans_i": 0.6941231086042449,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": true
+  },
+  {
+    "row": "gvae",
+    "seed": 43,
+    "f_resid": 1.0006132059941837,
+    "r2_forward": -0.0006132059941837743,
+    "r2_symmetry": -0.00010850542106967867,
+    "res_c": "COMPUTED",
+    "morans_i": 0.31507283031801,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": true
+  },
+  {
+    "row": "gvae",
+    "seed": 44,
+    "f_resid": 0.9103182781637786,
+    "r2_forward": 0.08968172183622136,
+    "r2_symmetry": 0.4844496878044384,
+    "res_c": "COMPUTED",
+    "morans_i": 0.41287290197439336,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": true
+  },
+  {
+    "row": "pvae",
+    "seed": 42,
+    "f_resid": 0.5348813588011865,
+    "r2_forward": 0.4651186411988136,
+    "r2_symmetry": 0.4961207602342482,
+    "res_c": "COMPUTED",
+    "morans_i": 0.28037665351230107,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "pvae",
+    "seed": 43,
+    "f_resid": 0.5338618873631791,
+    "r2_forward": 0.4661381126368209,
+    "r2_symmetry": 0.4989606443487402,
+    "res_c": "COMPUTED",
+    "morans_i": 0.29954012262639534,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "pvae",
+    "seed": 44,
+    "f_resid": 0.5477986810723598,
+    "r2_forward": 0.4522013189276401,
+    "r2_symmetry": 0.4806933668992675,
+    "res_c": "COMPUTED",
+    "morans_i": 0.3046994766606375,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "nag_s0",
+    "seed": 42,
+    "f_resid": 0.18444946554279695,
+    "r2_forward": 0.815550534457203,
+    "r2_symmetry": 0.9061001377743219,
+    "res_c": "COMPUTED",
+    "morans_i": 0.4592036150143649,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "nag_s0",
+    "seed": 43,
+    "f_resid": 0.049031086011078306,
+    "r2_forward": 0.9509689139889217,
+    "r2_symmetry": 0.9716329829790303,
+    "res_c": "COMPUTED",
+    "morans_i": 0.37670896637366064,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "nag_s0",
+    "seed": 44,
+    "f_resid": 0.10530778364673121,
+    "r2_forward": 0.8946922163532688,
+    "r2_symmetry": 0.7132838715788637,
+    "res_c": "COMPUTED",
+    "morans_i": 0.3201671308498509,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "nag_s1",
+    "seed": 42,
+    "f_resid": 0.0443957588122843,
+    "r2_forward": 0.9556042411877157,
+    "r2_symmetry": 0.9647299853138556,
+    "res_c": "COMPUTED",
+    "morans_i": 0.5232872910207332,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "nag_s1",
+    "seed": 43,
+    "f_resid": 0.04668147313773696,
+    "r2_forward": 0.953318526862263,
+    "r2_symmetry": 0.9545760266546738,
+    "res_c": "COMPUTED",
+    "morans_i": 0.5257149965453612,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  },
+  {
+    "row": "nag_s1",
+    "seed": 44,
+    "f_resid": 0.053688015952340074,
+    "r2_forward": 0.9463119840476599,
+    "r2_symmetry": 0.9583233436792616,
+    "res_c": "COMPUTED",
+    "morans_i": 0.5382551746879192,
+    "p_perm": 0.001,
+    "stop_rules_fired": [],
+    "collapse_caveat": false
+  }
+]
+==============================================================================
+[22:42:58] cell index: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\study_areas\netherlands\acc_sharpening\2026-07-28\residual\cell_index.json

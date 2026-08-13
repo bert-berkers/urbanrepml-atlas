@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\scripts\one_off\2026-07-28-acc-residual-probe.py", line 1649, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\scripts\one_off\2026-07-28-acc-residual-probe.py", line 1644, in main
+    execute(args.study_area, rows, seeds, families, gate_receipt=gate_receipt)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\scripts\one_off\2026-07-28-acc-residual-probe.py", line 1036, in execute
+    gate_basis = verify_gate_receipt(gate_receipt, families)
+  File "C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\scripts\one_off\2026-07-28-acc-residual-probe.py", line 542, in verify_gate_receipt
+    "receipt_path": str(receipt_path.relative_to(PROJECT_ROOT)),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Bert Berkers\AppData\Roaming\uv\python\cpython-3.13.5-windows-x86_64-none\Lib\pathlib\_local.py", line 385, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'data\\study_areas\\netherlands\\acc_sharpening\\2026-07-28\\replay_gate\\replay_gate_cuda.json' is not in the subpath of 'C:\\Users\\Bert Berkers\\PycharmProjects\\UrbanRepML'
