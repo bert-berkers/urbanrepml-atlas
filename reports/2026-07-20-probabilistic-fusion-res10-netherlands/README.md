@@ -91,7 +91,7 @@ now defined at first use (arm / backbone / objective / linear-probe=OLS / spatia
 reference-floor).
 
 **Defects** (before/after PNGs in
-[`../2026-07-18-accessibility-ablation/qaqc_render_2026-07-20/`](../2026-07-18-accessibility-ablation/qaqc_render_2026-07-20/)):
+`../2026-07-18-accessibility-ablation/qaqc_render_2026-07-20/` — private repo, not part of this public subset):
 
 | ID | Defect | Status |
 |---|---|---|
@@ -102,7 +102,7 @@ reference-floor).
 | D5 | (no visual defect) | **wontfix** |
 
 **Build**: 53 pp, xelatex ×2 exit 0, 0 errors, hyperref warnings 1→0. Rebuilt PDF:
-[`../2026-07-18-accessibility-ablation/latex/report.pdf`](../2026-07-18-accessibility-ablation/latex/report.pdf).
+`../2026-07-18-accessibility-ablation/latex/report.pdf` (private repo, not part of this public subset).
 
 ---
 
@@ -119,7 +119,7 @@ report as `fig:decollapse-maps` at the end of the de-collapse section.
 - **Caveat**: cluster colours are **not** cross-panel comparable (each panel is its own PCA8 + KMeans12,
   recorded in per-run provenance sidecars).
 
-Panels: [`../2026-07-18-accessibility-ablation/figures/maps_g3_2026-07-20/`](../2026-07-18-accessibility-ablation/figures/maps_g3_2026-07-20/).
+Panels: `../2026-07-18-accessibility-ablation/figures/maps_g3_2026-07-20/` (private repo, not part of this public subset).
 
 ---
 
@@ -139,7 +139,7 @@ folds? **Verdict: the P1 park stands.**
   verdict is unaffected.
 
 This is closed **report-only** — no rule or park status changed. See
-[`.claude/rules/domain-guardrails.md`](../../.claude/rules/domain-guardrails.md) P1.
+`.claude/rules/domain-guardrails.md` (private repo) P1.
 
 ---
 
@@ -192,10 +192,10 @@ None is closed; each is options-with-evidence. Full text:
 - [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md) — the 5-foundation draft (unregistered)
 - [`ring_agg_rebaseline/`](ring_agg_rebaseline/) — [table.md](ring_agg_rebaseline/ring_agg_res9_k10_table.md) · [results.json](ring_agg_rebaseline/ring_agg_res9_k10_results.json) · [table.parquet](ring_agg_rebaseline/ring_agg_res9_k10_table.parquet) · [sweep_run.log](ring_agg_rebaseline/sweep_run.log) · [arms_manifest.txt](ring_agg_rebaseline/arms_manifest.txt)
 
-**Accessibility-ablation report (frozen dir; docs untouched except the rebuild)**
-- Rebuilt PDF: [`../2026-07-18-accessibility-ablation/latex/report.pdf`](../2026-07-18-accessibility-ablation/latex/report.pdf) (53 pp)
-- G3 maps (18 panels): [`../2026-07-18-accessibility-ablation/figures/maps_g3_2026-07-20/`](../2026-07-18-accessibility-ablation/figures/maps_g3_2026-07-20/)
-- QAQC before/after renders: [`../2026-07-18-accessibility-ablation/qaqc_render_2026-07-20/`](../2026-07-18-accessibility-ablation/qaqc_render_2026-07-20/)
+**Accessibility-ablation report (frozen dir; docs untouched except the rebuild)** — private repo, not part of this public subset:
+- Rebuilt PDF: `../2026-07-18-accessibility-ablation/latex/report.pdf` (53 pp)
+- G3 maps (18 panels): `../2026-07-18-accessibility-ablation/figures/maps_g3_2026-07-20/`
+- QAQC before/after renders: `../2026-07-18-accessibility-ablation/qaqc_render_2026-07-20/`
 
 **New data artifacts** (outside `reports/`)
 - 3 ring-agg parquets: `data/study_areas/netherlands/stage2_multimodal/ring_agg/embeddings/netherlands_res9_2022_k10_{logarithmic,linear,flat}.parquet`

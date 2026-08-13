@@ -1,0 +1,9 @@
+figure: 26_term_fixation.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:47:03+00:00'
+seed: 42
+shows: 'didactic: what a fixation is (a real MNIST digit with the fixation point marked)'
+term: fixation
+source: glimpse.py sample_fixations / build_glimpse
+digit: 7

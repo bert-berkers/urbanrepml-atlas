@@ -80,7 +80,8 @@ The modalities differ wildly in how their variance distributes. AlphaEarth and P
 ![GTFS accessibility PC1](ch2_modalities/gtfs_accessibility_res9.png)
 *GTFS PC1 (74.1% of variance). 843,629 of 868,239 hexagons (97.17%) share an identical background vector; the bright minority is the actual transit-served fraction.*
 
-*(The "four modalities side by side" composite figure is omitted from this public atlas copy for repo-size budget; the four per-modality PC1 maps above cover the same content. Spatial supports differ (Roads 29% vs POI/GTFS 100%), and so does the variance structure.)*
+![Four modalities side by side](../../docs/images/ch2_four_modalities_2x2.png)
+*The same four sources on one sheet. Their spatial supports differ sharply — Roads reaches 29% of the grid against POI and GTFS at 100% — and so does their variance structure.*
 
 Up next: the Voronoi rasterizer that drew all of this.
 
@@ -136,7 +137,8 @@ H3 is a hierarchical tessellation: each parent hexagon nests roughly 7 children 
 ![UNet PC1 at res9](ch4_hierarchy/unet_pc1_res9.png)
 *UNet PC1 at res9 (397,757 hexes). Neighbourhood scale; UNet's PC1 captures 62.5% of its 64D variance — the supervised training has compressed most signal onto a single urban-rural axis.*
 
-*(The multiscale_avg-vs-concat comparison figure is omitted from this public atlas copy for repo-size budget. Two strategies for combining res7/8/9 outputs at the res9 grid: multiscale_avg, 64D, mean across exits, preserves per-scale grain; multiscale_concat, 192D, exits stacked, yields larger coherent regions and is the variant fed to the leefbaarometer probes.)*
+![multiscale_avg vs multiscale_concat at res9](../../docs/images/ch4_multiscale_avg_vs_concat_res9.png)
+*Two ways of folding the res7/8/9 outputs onto the res9 grid. multiscale_avg (64D, mean across exits) keeps the per-scale grain; multiscale_concat (192D, exits stacked) yields larger coherent regions, and it is the variant fed to the leefbaarometer probes.*
 
 ### Modality-native resolutions
 

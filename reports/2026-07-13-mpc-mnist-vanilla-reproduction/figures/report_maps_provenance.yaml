@@ -1,0 +1,24 @@
+run_dir: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full
+checkpoint: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full\checkpoint_final.pt
+checkpoint_step: 3000
+git_commit: 306abcd2092157660afdab51dc3ef20c8d9ed26b
+rendered_at: '2026-07-13T19:16:49+00:00'
+seed: 42
+reducer_requested: umap
+headline_stats:
+  fixation_map:
+    min: 52.29999923706055
+    max: 79.5999984741211
+    peak_xy:
+    - 14
+    - 14
+    grid:
+    - 4
+    - 9
+    - 14
+    - 18
+    - 23
+figures:
+- fig: '16'
+  file: 16_probe_fixation_position_map.png
+  note: acc 52.3-79.6%, peak@(x=14,y=14), 209s

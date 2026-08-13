@@ -1,0 +1,32 @@
+figure: 29_term_latent_encoder_only.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:47:04+00:00'
+seed: 42
+shows: 'didactic dataflow: glimpse→encoder→latent; predictions/errors latent-to-latent;
+  NO pixel decoder'
+term: latent encoding (encoder-only)
+source: model.py VanillaMPC (verified encoder-only)
+shapes:
+  g^v:
+  - 64
+  W0:
+  - 128
+  - 64
+  W1_W2:
+  - 128
+  - 128
+  R:
+  - 128
+  - 128
+  A:
+  - 128
+  - 2
+  z:
+  - 128
+  n_layers_L: 3
+  n_streams_V: 6
+  n_winners_Nw: 15
+encoder_only_verified: model.py has no decoder to pixels; generative weights bottom-up;
+  the only input-space route is the fixed transpose (W^0)ᵀ, a linear readout not a
+  learned decoder

@@ -1,0 +1,94 @@
+# The number chain — sealed values for the waterfall hero figure (fig_number_chain).
+# EVERY value here is read from a committed on-disk artifact; the `source` field names
+# it. No number is invented. The H13 node is EMPTY BY CONSTRUCTION — the KNN-vs-linear
+# probe-family experiment is running in a parallel lane; `value: null` renders as a
+# PENDING slot until that verdict lands and this file is updated.
+#
+# Consumed by: scripts/mpc/report/tech_report_figures.py :: build_number_chain()
+# All accuracies are MNIST test-set % (10 % = chance for 10 classes).
+
+meta:
+  task: MNIST digit classification, 10-class test accuracy
+  chance: 10.0
+  paper: "Ororbia, Friston & Rao — Meta-Representational Predictive Coding, arXiv:2503.21796 (v1, topology st1)"
+  probe: "log-linear head (single nn.Linear + cross-entropy) on frozen representation, unless a node says otherwise"
+  note: "random-readout track = the paper's 10-random-saccade concat; central-readout track = one forced central fixation (the H9 location-binding lens)."
+
+# Ordered nodes of the spine. `arrow_from`/`mechanism` describe the connector INTO this
+# node (what changed to get here). `track`: baseline | random | central | target | pending.
+nodes:
+  - id: rawpixel
+    value: 87.2
+    label: "raw pixels"
+    sub: "784-dim, whole image"
+    track: baseline
+    arrow_from: null
+    mechanism: null
+    source: "data/mpc_mnist/runs/_extraction_baselines/probe_result_rawpixel.json (test_acc=0.872, feature_dim=784, ledger H10, seed 42)"
+
+  - id: rawglimpse
+    value: 18.3
+    label: "random glimpse-stack"
+    sub: "3840-dim, untrained"
+    track: baseline
+    arrow_from: rawpixel
+    mechanism: "the glimpse bottleneck: foveated random saccades throw away location (-68.9pp)"
+    source: "data/mpc_mnist/runs/_extraction_baselines/probe_result_rawglimpse.json (test_acc=0.183, feature_dim=3840, ledger H8, seed 42)"
+
+  - id: control_random
+    value: 33.5
+    label: "trained, random readout"
+    sub: "MPC control, final"
+    track: random
+    arrow_from: rawglimpse
+    mechanism: "self-supervised learning lifts the random-glimpse readout (+15.2pp)"
+    source: "data/mpc_mnist/runs/mpc_fid_control/probe_result_final.json (test_acc=0.335); audit README Cell 1 / ledger H-control"
+
+  - id: t15_random
+    value: 42.5
+    label: "+ settle-timing (t15)"
+    sub: "random readout"
+    track: random
+    arrow_from: control_random
+    mechanism: "stop the E-step at the free-energy minimum (t_infer 15) not the T=100 overshoot (+9.0pp, ~1/3 the compute)"
+    source: "data/mpc_mnist/runs/mpc_fid_t15settle/probe_result_epoch2.json (test_acc=0.425); audit README Cell 4 / ledger H6"
+
+  - id: control_central
+    value: 79.3
+    label: "central readout"
+    sub: "same weights, one central fixation"
+    track: central
+    arrow_from: control_random
+    mechanism: "location-binding: read the SAME trained weights at one central fixation instead of ten random ones (+45.8pp)"
+    source: "data/mpc_mnist/runs/mpc_fid_control/probe_result_central_final.json (test_acc=0.793, mode=central-latents); audit README ledger H9"
+
+  - id: t15_central
+    value: 85.5
+    label: "+ settle-timing (t15)"
+    sub: "central readout"
+    track: central
+    arrow_from: control_central
+    mechanism: "settle-timing on the central-fixation lens (+6.2pp)"
+    source: "data/mpc_mnist/runs/mpc_fid_t15settle/probe_result_central_epoch2.json (test_acc=0.855, mode=central-latents); audit README Cell 4 / ledger H6"
+
+  - id: paper_target
+    value: 97.5
+    label: "paper target"
+    sub: "v1 st1"
+    track: target
+    arrow_from: null
+    mechanism: null
+    source: "arXiv:2503.21796 v1, reported 97.50% +/- 0.15 for st1"
+
+  # -------------------------------------------------------------------------
+  # H13 LANDED (branch iii fired): measured the paper's WAY (KNN), the model reads
+  # LOWER, not higher -- the linear head was flattering the representation. The node
+  # sits BELOW t15_central and the remaining gap to 97.5 WIDENS.
+  - id: h13_knn
+    value: 63.6
+    label: "measured the paper's way (KNN)"
+    sub: "central, k=10 euclidean"
+    track: pending          # rendered brick = the twist / caution colour
+    arrow_from: t15_central
+    mechanism: "read out the paper's way (KNN, not a linear head), the model reads LOWER -- the gap to 97.5 WIDENS (-21.9pp)"
+    source: "data/mpc_mnist/runs/mpc_fid_t15settle/knn_probe_central_final.json (results k=10 euclidean test_acc=0.636, PRIMARY/decisional; cosine k=5=0.717 reported-only); fidelity_audit hypothesis_ledger.md H13 posterior, order gate held 2837d49 11:35:59 < run mtimes"

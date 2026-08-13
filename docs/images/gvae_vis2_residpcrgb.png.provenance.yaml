@@ -1,0 +1,45 @@
+source_runs:
+- 2026-07-28_gvae_s42
+source_artifacts:
+- data/study_areas/netherlands/acc_sharpening/2026-07-28/residual/gvae_s42/residual.parquet
+plot_config:
+  campaign: 2026-07-28-accessibility-sharpening-explainability
+  cell: VIS-2
+  objective_row: gvae
+  seed: 42
+  study_area: netherlands
+  h3_resolution: 9
+  frame_hexes: 482706
+  frame_scope: embedding-only (no target join)
+  coloring: rank-rgb
+  raster_w: 2000
+  raster_h: 2400
+  raster_note: full per-panel resolution, NEVER divided by panel count (viz-discipline);
+    polygon fill via render.aggregate, so the stamp = max(1, 11 - resolution) knob
+    does not apply
+  render_path: geopandas-direct
+  colour_limits_scope: computed once on the full-NL frame, reused for the SH zoom
+  sh_zoom_bbox_epsg28992:
+  - 48120.0
+  - 407743.0
+  - 130564.0
+  - 482534.0
+  sh_zoom_derivation: centroid-within data/study_areas/south_holland/area_gdf/south_holland_boundary.parquet
+    (source-battery convention)
+  regenerated_from: scripts/one_off/2026-07-28-acc-residual-map-battery.py::render_row
+  variant: factual titles baked in raster; internal-report surface per viz-discipline
+    chrome calibration -- no A/B working framing (D62)
+  description: 'VIS-2 Gaussian-VAE: PC-RGB of the 64-D residual matrix R (rank-normalised
+    PC1/PC2/PC3), seed 42'
+  data_vintage: 2022
+  prereg: reports/2026-07-28-accessibility-sharpening-explainability/PREREGISTRATION.md
+  rank_lo: 0.05
+  rank_hi: 0.95
+  rank_gamma: 0.75
+  pca_components: 3
+git_commit: bb721968093e17bfd0bca5fbb46f1509d45ac8ec
+git_dirty: true
+started_at: '2026-07-28T22:00:17+00:00'
+ended_at: '2026-07-28T22:00:17+00:00'
+producer_script: scripts/one_off/2026-07-28-acc-residual-map-battery.py
+schema_version: '1.0'

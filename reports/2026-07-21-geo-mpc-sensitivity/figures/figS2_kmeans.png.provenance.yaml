@@ -1,0 +1,71 @@
+source_runs: []
+source_artifacts:
+- data/study_areas/south_holland/stage2_multimodal/mpc_cone_glimpse/sensitivity_2026-07-20/sh_res9_2022_mpc_sens_stack_0720_smr5_core0123_trained_readout-average.parquet
+- data/study_areas/south_holland/stage2_multimodal/mpc_cone_glimpse/sensitivity_2026-07-20/sh_res9_2022_mpc_sens_sens_ns40_dt0.01_smr5_core0123_trained_readout-average.parquet
+- data/study_areas/south_holland/stage2_multimodal/mpc_cone_glimpse/sensitivity_2026-07-20/sh_res9_2022_mpc_sens_sens_ns320_dt0.05_smr5_core0123_trained_readout-average.parquet
+plot_config:
+  plot: kmeans_3panel_fitonce
+  view: kmeans
+  axis: Settling axis (E-step depth / M-step size)
+  arms:
+  - stack_0720_smr5_core0123
+  - sens_ns40_dt0.01_smr5_core0123
+  - sens_ns320_dt0.05_smr5_core0123
+  reference_arm: stack_0720_smr5_core0123
+  resolution: 9
+  extent_epsg: 28992
+  fit_once: PCA(16)+CDF+StandardScaler+kmeans ALL fit on a7; other arms projected/predicted
+  comparability: shared a7 lens; cluster label == same centroid across panels
+  latent_caveat: arms are independently-trained (seed 42, same arch/data); latent
+    frames descend from a common init and are treated as approximately aligned
+  k: 12
+  pca_components: 16
+  standardize: true
+  palette: tab20
+  color_match: a7-fit cluster label (semantic)
+  cluster_shares:
+    stack_0720_smr5_core0123:
+    - 0.08
+    - 0.049
+    - 0.1022
+    - 0.0717
+    - 0.1273
+    - 0.1555
+    - 0.018
+    - 0.1266
+    - 0.0506
+    - 0.1154
+    - 0.0665
+    - 0.0371
+    sens_ns40_dt0.01_smr5_core0123:
+    - 0.1255
+    - 0.0513
+    - 0.0826
+    - 0.0729
+    - 0.1138
+    - 0.1703
+    - 0.018
+    - 0.1038
+    - 0.05
+    - 0.0969
+    - 0.0694
+    - 0.0455
+    sens_ns320_dt0.05_smr5_core0123:
+    - 0.0379
+    - 0.0752
+    - 0.0979
+    - 0.0167
+    - 0.0736
+    - 0.2165
+    - 0.0521
+    - 0.0475
+    - 0.0683
+    - 0.1592
+    - 0.0693
+    - 0.0859
+git_commit: 57f459af1d21e4eb76021223e55305a91e2e3b98
+git_dirty: true
+started_at: '2026-07-21T18:25:07+00:00'
+ended_at: '2026-07-21T18:25:07+00:00'
+producer_script: scripts/one_off/2026-07-21-mpc-sensitivity-map-suite.py
+schema_version: '1.0'

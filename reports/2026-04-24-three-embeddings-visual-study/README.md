@@ -15,14 +15,14 @@ The author of this report (Claude) has documented priors from project memory: *"
 The procedure used to mitigate this:
 1. **Blind structural reading first.** Each panel was described in terms of visual structure (color blocks, speckle, sharp boundaries) before mapping to geography or interpreting meaning.
 2. **Disconfirmation passes.** Several initial claims were retracted after looking at higher-resolution panels. Retractions are recorded inline ("Correction" headers).
-3. **Quantitative anchors.** Cluster centroids in EPSG:28992 and PCA variance ratios (sidecar JSONs at [`panels/stats/`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/stats/)) ground visual claims.
+3. **Quantitative anchors.** Cluster centroids in EPSG:28992 and PCA variance ratios (sidecar JSONs at `panels/stats/` — private repo, not part of this public subset) ground visual claims.
 4. **Control panel.** Dutch gemeente 2024 boundaries (342 polygons, EPSG:28992) provide independent geographic reference, used before any embedding panel was read.
 
 This is a single-author visual study. It would benefit from independent re-reading with embedding identities masked.
 
 ### The geographic control we read first
 
-![Gemeente 2024 control panel — 342 Dutch municipalities at EPSG:28992](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/control/province_boundaries.png)
+![Gemeente 2024 control panel — 342 Dutch municipalities at EPSG:28992](../../docs/images/three_embeddings_control_gemeente.png)
 
 Before opening any embedding panel, the analyst studied the Netherlands' admin geography to fix a reference frame. The 342 gemeente polygons reveal where to expect what:
 
@@ -59,7 +59,7 @@ The concat embedding is the four input modalities (AlphaEarth 64D + hex2vec POI 
 
 ### What KMeans finds in concat
 
-![Concat — KMeans k=10, tab10](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/concat/clusters_tab10.png)
+![Concat — KMeans k=10, tab10](../../docs/images/three_embeddings_concat_clusters.png)
 
 **Initial reading at 3-way thumbnail size suggested "no coherent structure." This was wrong.**
 
@@ -77,7 +77,7 @@ The structure is there. It just lives at hex resolution and the eye reads the pe
 
 ### What PCA finds in concat
 
-![Concat — PC1 → turbo, PC1 captures 18.7% of variance](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/concat/pc1_turbo.png)
+![Concat — PC1 → turbo, PC1 captures 18.7% of variance](../../docs/images/three_embeddings_concat_pc1.png)
 
 This is the cleanest reading in the entire study. **Concat PC1 lights up cities everywhere in the country**:
 
@@ -90,7 +90,7 @@ This is the cleanest reading in the entire study. **Concat PC1 lights up cities 
 
 PC1 in raw concat is essentially an urbanization index. It is uniform across the country: a city in Friesland and a city in Limburg both light up. Despite explaining only 18.7% of total variance, this signal is strong, repeatable, and geographically meaningful.
 
-![Concat — PCA(3) → rank-norm RGB](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/concat/pcrgb_rank.png)
+![Concat — PCA(3) → rank-norm RGB](../../docs/images/three_embeddings_concat_pcrgb.png)
 
 The full 3-PC RGB is muted by comparison — predominantly yellow-green tinted with pink/magenta concentrated in central-west. Lower chromatic variation than the U-Net version, consistent with PCs accounting for only 35% of variance. The cyan dots throughout signal smaller urban concentrations; the orange/red Randstad-and-southern-arc signal is preserved here too.
 
@@ -102,7 +102,7 @@ Ring Aggregation k=10 takes the concat embedding and replaces each hex's vector 
 
 ### What KMeans finds in ring_agg
 
-![Ring-Agg — KMeans k=10, tab10](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/ring_agg/clusters_tab10.png)
+![Ring-Agg — KMeans k=10, tab10](../../docs/images/three_embeddings_ring_agg_clusters.png)
 
 The same general regional pattern as concat, but now smoothed into much larger coherent blocks:
 
@@ -118,13 +118,13 @@ Clusters group hexes by region, not by individual-hex feature alone. **That is t
 
 ### What PCA finds in ring_agg
 
-![Ring-Agg — PC1 → turbo, PC1 captures 17.9% of variance](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/ring_agg/pc1_turbo.png)
+![Ring-Agg — PC1 → turbo, PC1 captures 17.9% of variance](../../docs/images/three_embeddings_ring_agg_pc1.png)
 
 The same urbanization-everywhere signal as concat, but smoother. The Randstad band is broader and less crisp (averaging in suburbs), and individual eastern cities still light up but with halos rather than sharp dots. **The PC1 axis is essentially the same as concat's** — variance ratios 17.9% vs 18.7%, visually indistinguishable in pattern.
 
 This is important: ring_agg's improvement on probes is *not* coming from a different latent axis. It's coming from spatial regularization at the hex level — each hex now shares evidence with its neighbors, making it a less noisy estimator of "what kind of place is this hex."
 
-![Ring-Agg — PCA(3) → rank-norm RGB](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/ring_agg/pcrgb_rank.png)
+![Ring-Agg — PCA(3) → rank-norm RGB](../../docs/images/ring_agg_k10_pcrgb_rank.png)
 
 Similar palette and dynamic range to concat's PC-RGB — pink/magenta in central-west, green/yellow in rural east, faint Wadden chain visible. The smoothing has cleaned up the per-hex noise but the macrostructure is unchanged.
 
@@ -136,7 +136,7 @@ The U-Net is the only learned encoder in this comparison. It takes the 208D conc
 
 ### What KMeans finds in U-Net
 
-![U-Net — KMeans k=10, tab10, dim=64](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/unet/clusters_tab10.png)
+![U-Net — KMeans k=10, tab10, dim=64](../../docs/images/three_embeddings_unet_clusters.png)
 
 **Initial reading at 3-way thumbnail size suggested U-Net was "the most spatially coherent." This was wrong.**
 
@@ -146,7 +146,7 @@ At full resolution U-Net is **at least as speckly as concat at the hex level**. 
 
 ### What PCA finds in U-Net — the surprise
 
-![U-Net — PC1 → turbo, PC1 captures 62.5% of variance](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/unet/pc1_turbo.png)
+![U-Net — PC1 → turbo, PC1 captures 62.5% of variance](../../docs/images/three_embeddings_unet_pc1.png)
 
 **This is the most interesting panel in the study, and the easiest one to misread.**
 
@@ -159,7 +159,7 @@ Two patterns superimpose **additively**:
 
 **Hypothesis (low-confidence)**: the GTFS modality has higher density in the south/Randstad than in the north — Northern Groningen has trains but the *region around it* doesn't have anything like the transit density of Brabant. If the U-Net weights GTFS heavily, PC1 will mix urbanization with regional transit density, which correlates with latitude. This is a guess. **Confirming requires reading the PC1 component vector against the 64 latent dimensions and inspecting which input modalities drive it.** Not done in this session.
 
-![U-Net — PCA(3) → rank-norm RGB, top-3 PCs cover 98.6% of variance](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/unet/pcrgb_rank.png)
+![U-Net — PCA(3) → rank-norm RGB, top-3 PCs cover 98.6% of variance](../../docs/images/three_embeddings_unet_pcrgb.png)
 
 The most chromatically dramatic of the three — vivid pinks in central-west, greens in the east, blues in the north, purples in the south, with sharp boundaries between regions. The eye reads this as *rich information.* It is not. **It is variance concentration.** With PC1+PC2+PC3 = 98.6% of variance, the dynamic range maps almost everything to bold colors. Concat and ring_agg's PC-RGB show only 35–36% of variance and look correspondingly muted — but the muting reflects information *spread across more axes*, not less information.
 
@@ -169,7 +169,7 @@ The most chromatically dramatic of the three — vivid pinks in central-west, gr
 
 ### Clusters
 
-![3-way comparison — KMeans clusters, tab10](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/comparison/clusters_tab10_3way.png)
+![3-way comparison — KMeans clusters, tab10](../../docs/images/three_embeddings_clusters_3way.png)
 
 **Spatial coherence ranking (from this view alone):** U-Net > Ring-Agg > Concat.
 
@@ -179,13 +179,13 @@ The 3-way thumbnail is misleading because downsampling cancels concat and U-Net'
 
 ### PC1 → turbo
 
-![3-way comparison — PC1 turbo](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/comparison/pc1_turbo_3way.png)
+![3-way comparison — PC1 turbo](../../docs/images/three_embeddings_pc1_3way.png)
 
 The clearest comparison in the study. Concat and ring_agg PC1 are visually nearly identical — urbanization across the country, with ring_agg slightly smoother. U-Net PC1 is different in a specific way: it is urbanization **plus** a north-south latitude term, added. Northern cities still read as warm patches (Groningen, Leeuwarden are visible as orange spots), just at lower absolute PC1 values than equally-urbanized southern cities. **All three embeddings have a "PC1 = something about urbanization" axis**; the U-Net's PC1 additionally encodes a regional baseline that shifts the whole scale across latitude.
 
 ### PC-RGB
 
-![3-way comparison — PCA(3) → rank-norm RGB](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/comparison/pcrgb_rank_3way.png)
+![3-way comparison — PCA(3) → rank-norm RGB](../../docs/images/three_embeddings_pcrgb_3way.png)
 
 The U-Net panel looks dramatic. The concat and ring_agg panels look muted. **This comparison is unfair to concat and ring_agg by construction**, because their top-3 PCs cover only 35–36% of variance whereas the U-Net's cover 98.6%. To make this comparison meaningful you would need to either (a) compare U-Net's 3-PC view against the top-3 components of concat/ring_agg expanded out to *equivalent variance coverage* (which would require ~10+ PCs each), or (b) compare them all on a fixed budget (e.g. first 3 components regardless of variance). Neither is done here. The visual takeaway "U-Net is more colorful" should not be read as "U-Net is more informative."
 
@@ -262,7 +262,7 @@ The descriptive analysis above assigned cluster IDs to regions ("orange clusters
 
 ### The leefbaarometer target
 
-![Leefbaarometer score, LBM-2022, viridis colormap, 33% coverage of res9 hexes](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/target/leefbaarometer.png)
+![Leefbaarometer score, LBM-2022, viridis colormap, 33% coverage of res9 hexes](../../docs/images/target_leefbaarometer.png)
 
 This is what the three embeddings are ultimately probed against. **High score (yellow) = better leefbaarometer-defined liveability; low score (purple) = worse.** Score range nationally is 3.42–5.04 with mean 4.20 and std 0.12 — a tight distribution, so subtle viridis differences are large in standardised terms.
 
@@ -279,7 +279,7 @@ This is what the three embeddings are ultimately probed against. **High score (y
 
 ### The annotated ring_agg cluster panel
 
-![Ring-Agg k=10 clusters with centroid annotations and per-cluster legend](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/ring_agg/clusters_tab10_annotated.png)
+![Ring-Agg k=10 clusters with centroid annotations and per-cluster legend](../../docs/images/three_embeddings_ring_agg_clusters_annotated.png)
 
 The centroids are the mean (RD x, RD y) of each cluster's member hexes — they are **spatial centres of mass, not single-city locations**. A cluster whose hexes span the whole country can have its centroid land in an area that doesn't visually look like the cluster's most prominent region. Read centroid position together with the cluster's main visible blobs.
 
@@ -298,7 +298,7 @@ Mapping cluster IDs to dominant Dutch regions (size + visible distribution):
 
 ### Per-cluster LBM correlation table
 
-The full per-cluster table is at [`panels/stats/leefbaarometer_per_cluster.json`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/stats/leefbaarometer_per_cluster.json). Top-3 / bottom-3 by mean LBM, per embedding (with coverage caveat: low-coverage clusters in *italics*):
+The full per-cluster table is at `panels/stats/leefbaarometer_per_cluster.json` (private repo, not part of this public subset). Top-3 / bottom-3 by mean LBM, per embedding (with coverage caveat: low-coverage clusters in *italics*):
 
 **Concat** (national LBM mean = 4.198):
 
@@ -371,7 +371,7 @@ The full per-cluster table is at [`panels/stats/leefbaarometer_per_cluster.json`
 
 1. **U-Net PC1 decomposition.** Read the 64-dim latent → PC1 vector and rank by per-modality loading. Is GTFS responsible for the north–south gradient?
 2. **Cluster–boundary correlation.** Compute per-cluster centroid vs gemeente boundaries (Jaccard or homogeneity). Does any of the three embeddings cluster the Randstad as a single municipality-set?
-3. **Probe overlay.** ✓ DONE — see [Closing the loop](#closing-the-loop--probe-target-overlay--cluster-identities) section above. Leefbaarometer LBM-2022 panel rendered at the same Voronoi extent, plus per-embedding × per-cluster LBM correlation table at [`panels/stats/leefbaarometer_per_cluster.json`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/stats/leefbaarometer_per_cluster.json). Key finding: ring_agg's per-cluster LBM spread is the widest of the three (range 0.20 vs 0.15 for U-Net), consistent with its known leefbaarometer probe advantage.
+3. **Probe overlay.** ✓ DONE — see [Closing the loop](#closing-the-loop--probe-target-overlay--cluster-identities) section above. Leefbaarometer LBM-2022 panel rendered at the same Voronoi extent, plus per-embedding × per-cluster LBM correlation table at `panels/stats/leefbaarometer_per_cluster.json` (private repo, not part of this public subset). Key finding: ring_agg's per-cluster LBM spread is the widest of the three (range 0.20 vs 0.15 for U-Net), consistent with its known leefbaarometer probe advantage.
 4. **Rasterize bug — promote to P0.** The Voronoi-based rasterization used for these panels is in `scripts/one_off/viz_three_embeddings_res9_study.py`. The same bug exists in `utils/visualization.py:rasterize_continuous` and is silently corrupting every published cluster/probe map across the project (13 callers). Replace with the Voronoi reference implementation and audit. *Already flagged in `.claude/scratchpad/coordinator/2026-04-24-keen-passing-moor.md` as `[open|0d]`.*
 
 ---
@@ -380,14 +380,14 @@ The full per-cluster table is at [`panels/stats/leefbaarometer_per_cluster.json`
 
 | Purpose | Path |
 |---|---|
-| W4 production script (3-embedding study) | [`scripts/one_off/viz_three_embeddings_res9_study.py`](../../scripts/one_off/viz_three_embeddings_res9_study.py) |
-| W5 production script (LBM overlay + annotations) | [`scripts/one_off/viz_three_embeddings_lbm_overlay.py`](../../scripts/one_off/viz_three_embeddings_lbm_overlay.py) |
-| Per-embedding panels | [`panels/concat/`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/concat/) · [`panels/ring_agg/`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/ring_agg/) · [`panels/unet/`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/unet/) |
-| Annotated ring_agg cluster panel (W5) | [`panels/ring_agg/clusters_tab10_annotated.png`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/ring_agg/clusters_tab10_annotated.png) |
-| 3-way comparison panels | [`panels/comparison/`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/comparison/) |
-| Leefbaarometer target panel (W5) | [`panels/target/leefbaarometer.png`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/target/leefbaarometer.png) |
-| Geographic control (gemeente 2024) | [`panels/control/province_boundaries.png`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/control/province_boundaries.png) |
-| Stats (cluster sizes, PCA variance, EPSG:28992 centroids) | [`panels/stats/`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/stats/) |
-| Per-cluster LBM correlation table (W5) | [`panels/stats/leefbaarometer_per_cluster.json`](../../data/study_areas/netherlands/stage3_analysis/2026-04-24/panels/stats/leefbaarometer_per_cluster.json) |
-| Earlier proof-of-concept (canonical 2-panel + 8-panel gallery, ring_agg only) | [`scripts/one_off/viz_ring_agg_res9_grid.py`](../../scripts/one_off/viz_ring_agg_res9_grid.py) |
+| W4 production script (3-embedding study) | `scripts/one_off/viz_three_embeddings_res9_study.py` (private repo) |
+| W5 production script (LBM overlay + annotations) | `scripts/one_off/viz_three_embeddings_lbm_overlay.py` (private repo) |
+| Per-embedding panels | `panels/concat/` · `panels/ring_agg/` · `panels/unet/` (private repo) |
+| Annotated ring_agg cluster panel (W5) | `panels/ring_agg/clusters_tab10_annotated.png` (private repo) |
+| 3-way comparison panels | `panels/comparison/` (private repo; the cluster and PC1 3-way panels are reproduced above from [`docs/images/`](../../docs/images/)) |
+| Leefbaarometer target panel (W5) | [`docs/images/target_leefbaarometer.png`](../../docs/images/target_leefbaarometer.png) |
+| Geographic control (gemeente 2024) | `panels/control/province_boundaries.png` (private repo) |
+| Stats (cluster sizes, PCA variance, EPSG:28992 centroids) | `panels/stats/` (private repo) |
+| Per-cluster LBM correlation table (W5) | `panels/stats/leefbaarometer_per_cluster.json` (private repo) |
+| Earlier proof-of-concept (canonical 2-panel + 8-panel gallery, ring_agg only) | `scripts/one_off/viz_ring_agg_res9_grid.py` (private repo) |
 | Coordinator + specialist scratchpads | `.claude/scratchpad/{coordinator,stage3-analyst,librarian,ego}/2026-04-24-keen-passing-moor.md` |

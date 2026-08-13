@@ -1,0 +1,9 @@
+figure: 16_probe_fixation_position_map.png
+panel: probe-map/B7
+regenerated_from: scripts/mpc/mnist/viz.py
+run_dir: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full
+checkpoint: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full\checkpoint_final.pt
+checkpoint_step: 3000
+git_commit: 306abcd2092157660afdab51dc3ef20c8d9ed26b
+rendered_at: '2026-07-13T19:16:49+00:00'
+seed: 42

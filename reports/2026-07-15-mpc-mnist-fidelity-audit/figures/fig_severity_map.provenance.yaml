@@ -1,0 +1,27 @@
+figure: fig_severity_map
+generated: '2026-07-17'
+regenerated_from: scripts/mpc/report/fidelity_audit_figures.py
+git_commit_at_build: 26393f93e680c02da181a5c2f41b6683be194ea0
+builder_commit: a497e79fbfcc15cdb86385102b434fb4a24ec765
+commit_then_run_note: "git_commit_at_build (HEAD at render) CONTAINS this builder\
+  \ \u2014 last touched by a497e79, an ancestor of HEAD. Commit-then-run (artifact-provenance\
+  \ rule c) satisfied."
+type: schematic (no data source)
+source_docs:
+- reports/2026-07-15-mpc-mnist-fidelity-audit/paper_ground_truth.md
+- reports/2026-07-15-mpc-mnist-fidelity-audit/as_built_mechanics.md
+- reports/2026-07-15-mpc-mnist-fidelity-audit/findings_ranked.md
+font_used: Calibri
+font_target: Aptos
+font_fallback_chain: Aptos (target, not installed) -> Calibri -> DejaVu Sans
+palette: INK/STEEL/AMBER (shared with scripts/stage2/mpc_methodology_figures.py);
+  SIGNAL red = deviation from paper
+description: 'The 12 ranked findings F1-F12 as a severity x explains-the-two-clues
+  matrix. Severity colour: FUNDAMENTAL (red) / STRUCTURAL (amber) / PARAMETRIC (gold)
+  / PROVENANCE (grey). Green ramp encodes how strongly each finding explains clue
+  (a) the probe-inversion and clue (b) the sampling-dominance result. F1 is the single
+  FUNDAMENTAL, strong-on-(a) suspect; F5 is the only strong-on-(b) but is paper-silent.'
+anchors:
+  ranking: findings_ranked.md PART 1 table
+  clue_a: findings_ranked.md clue (a) probe-inversion
+  clue_b: findings_ranked.md clue (b) sampling dominance

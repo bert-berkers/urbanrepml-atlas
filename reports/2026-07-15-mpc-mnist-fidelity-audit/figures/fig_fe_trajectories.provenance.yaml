@@ -1,0 +1,67 @@
+figure: fig_fe_trajectories
+generated: '2026-07-17T01:09:52+00:00'
+regenerated_from: scripts/mpc/report/fidelity_audit_data_figures.py
+type: data-backed (real run artifacts)
+git_commit_at_build: 26393f93e680c02da181a5c2f41b6683be194ea0
+builder_commit: a497e79fbfcc15cdb86385102b434fb4a24ec765
+commit_then_run_note: "git_commit_at_build (HEAD at render) CONTAINS this builder\
+  \ \u2014 last touched by a497e79, an ancestor of HEAD. Commit-then-run (artifact-provenance\
+  \ rule c) satisfied; the earlier untracked-builder self-heal is complete."
+inputs:
+- path: data/mpc_mnist/runs/mpc_fid_control/run_info.json
+  role: control epoch_mean_fe
+  sha256: 7b987deceb0bb5b9210d3de1f94466118c5cef58917ddd403a2ad5e4e480016a
+- path: data/mpc_mnist/runs/mpc_fid_meancenter/run_info.json
+  role: meancenter epoch_mean_fe
+  sha256: 8aee4befd010104afb051666e9b80c2f920f9b2dd603b85852b1516047619dee
+- path: data/mpc_mnist/runs/mpc_fid_meancenter_selfpred/run_info.json
+  role: cell-3 epoch_mean_fe (W4 refresh)
+  sha256: 316d843222229001e3c37b43d577e9e4c5822c205e13487cc306a59f0728e31f
+font_used: Calibri
+font_target: Aptos
+font_fallback_chain: Aptos (target, not installed) -> Calibri -> DejaVu Sans
+font_substitution_note: Aptos (house target) not installed on this box; rendered with
+  Calibri (closest available humanist sans, same substitution as the schematic builder).
+palette: "INK/STEEL/AMBER/SIGNAL/GO/BLUE shared with scripts/mpc/report/fidelity_audit_figures.py.\
+  \ Entity hues: control=SIGNAL red, meancenter=BLUE, cell3=GO green. CVD-validated\
+  \ (dataviz validate_palette.js, light mode): red/blue \u0394E 20.5 protan / 28.4\
+  \ normal; {red,blue,green} trio passes with red<->green in the 6-8 CVD band, legal\
+  \ with the direct-label + distinct-marker secondary encoding these charts carry."
+description: "Free-energy trajectories per epoch, control (red) vs meancenter (blue)\
+  \ overlaid (cell-3 green added in W4). Control is near-flat (610.8 -> 596.2, -2.4%);\
+  \ meancenter drops ~20% (599.5 -> 477.2). Endpoint values + percentage change are\
+  \ direct-labelled. Mechanistic point (callout): the objective provably changed under\
+  \ mean-centering while the digit probe got worse (fig_probe_drift) \u2014 lower\
+  \ free energy is not more digit content. Single y-axis, honest non-zero FE range\
+  \ (free energy is not a ratio-from-zero quantity); no exaggerated zoom."
+seed:
+  control: 42
+  meancenter: 42
+values:
+  control_epoch_mean_fe:
+  - 610.7630426600575
+  - 595.4407945796252
+  - 596.1983540257811
+  meancenter_epoch_mean_fe:
+  - 599.5210713452997
+  - 479.7289778132142
+  - 477.1687289234402
+planned_refresh:
+  trigger: cell-3 (mpc_fid_meancenter_selfpred) finishes ~01:00 tonight
+  flag: --cell3-run-info <run_info.json>
+  effect: adds the cell-3 FE trajectory as a third (GO green) line
+  cell3_present_this_build: true
+t15_omitted_from_this_panel:
+  reason: "mpc_fid_t15settle uses t_infer=15 (vs 100 here); its FE (394.6 -> 268.3\
+    \ -> 242.2) is read at the end of a shorter settle window, so its absolute scale\
+    \ is NOT comparable to the T=100 cells \u2014 co-plotting on this axis would mislead.\
+    \ t15's comparable result (linear-probe drift, same 5k/1k budget) appears in fig_probe_drift\
+    \ instead."
+  t15_epoch_mean_fe:
+  - 394.6288979428411
+  - 268.32180930547423
+  - 242.22665668590372
+anchors:
+  control_fe: data/mpc_mnist/runs/mpc_fid_control/run_info.json epoch_mean_fe; README:181
+  meancenter_fe: data/mpc_mnist/runs/mpc_fid_meancenter/run_info.json epoch_mean_fe;
+    README:190

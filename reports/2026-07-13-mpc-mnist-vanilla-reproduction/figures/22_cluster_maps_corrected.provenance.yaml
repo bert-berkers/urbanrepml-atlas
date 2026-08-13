@@ -1,0 +1,13 @@
+figure: 22_cluster_maps_corrected.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T06:01:32+00:00'
+seed: 42
+shows: 'k-means(k=10) on corrected-final latents: by cluster / by digit / composition
+  heatmap'
+checkpoints:
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\checkpoint_final.pt
+n_images: 1000
+cluster_purity_pct: 19.2
+ari: 0.020799772645866643
+reducer: t-SNE (umap-learn not installed)

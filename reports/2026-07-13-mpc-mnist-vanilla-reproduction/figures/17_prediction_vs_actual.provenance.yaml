@@ -1,0 +1,9 @@
+figure: 17_prediction_vs_actual.png
+panel: pred-viz/C1
+regenerated_from: scripts/mpc/mnist/viz.py
+run_dir: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full
+checkpoint: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full\checkpoint_final.pt
+checkpoint_step: 3000
+git_commit: b7bbd1961ad9ba0a48cc4cc6b1dcec92d5260e1c
+rendered_at: '2026-07-13T19:41:33+00:00'
+seed: 42

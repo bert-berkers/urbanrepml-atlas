@@ -1,0 +1,11 @@
+figure: 27_term_glimpse.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:58:37+00:00'
+seed: 42
+shows: 'didactic: the 6 foveated stream patches glimpse.py extracts at a fixation,
+  sizes labelled'
+term: glimpse
+source: glimpse.py build_glimpse (S=8, foveal_offset=2)
+digit: 7
+streams: 4×foveal 8×8 + parafoveal 16×16 + peripheral 24×24, all avg-pooled to 8×8

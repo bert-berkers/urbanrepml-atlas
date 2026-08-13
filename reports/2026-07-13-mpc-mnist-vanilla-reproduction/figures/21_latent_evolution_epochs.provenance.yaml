@@ -1,0 +1,19 @@
+figure: 21_latent_evolution_epochs.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T06:09:49+00:00'
+seed: 42
+shows: corrected run epoch0/2/4 concat-latent projections (PCA + t-SNE), by digit
+checkpoints:
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\checkpoint_epoch0.pt
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\checkpoint_epoch2.pt
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\checkpoint_epoch4.pt
+inputs:
+- probe_result_epoch0_limited.json
+- probe_result_epoch2_limited.json
+- probe_result_epoch4_limited.json
+n_images: 1000
+drift_probe_acc:
+  epoch0: 43.00000071525574
+  epoch2: 37.90000081062317
+  epoch4: 38.89999985694885

@@ -21,7 +21,7 @@ Note: Concat and RingAgg use 74D (AE 64 + Roads 10) rather than 208D because POI
 
 ## Target Correlation Structure
 
-![Leefbaarometer Correlation Matrix](../../data/study_areas/netherlands/target/leefbaarometer/plots/correlation_matrix.png)
+*(Correlation matrix figure lives only in the private repo's `data/` tree — not copied to this public subset.)*
 
 The six leefbaarometer targets split into two groups:
 
@@ -83,13 +83,13 @@ The practical takeaway: **do not concatenate embeddings from different spatial l
 > §Checkpoint Index for checkpoint disambiguation (two 74D checkpoints exist
 > with different dates).
 
-- Concat 74D probe: [`dnn_probe/2026-03-21/2026-03-21_custom_concat_74d/`](../../data/study_areas/netherlands/stage3_analysis/dnn_probe/2026-03-21/2026-03-21_custom_concat_74d/)
-- RingAgg k10 74D probe: [`dnn_probe/2026-03-21/2026-03-21_custom_ring_agg_k10/`](../../data/study_areas/netherlands/stage3_analysis/dnn_probe/2026-03-21/2026-03-21_custom_ring_agg_k10/)
-- UNet-MS 192D probe: [`dnn_probe/2026-03-22/unet_supervised_multiscale/`](../../data/study_areas/netherlands/stage3_analysis/dnn_probe/2026-03-22/unet_supervised_multiscale/) (checkpoint `best_model_2022_74D_2026-03-22.pt`)
-- Ring+UNet 400D probe: [`dnn_probe/2026-03-29/2026-03-29_custom_ring+unet_400d/`](../../data/study_areas/netherlands/stage3_analysis/dnn_probe/2026-03-29/2026-03-29_custom_ring+unet_400d/)
-- Combined 400D embeddings: [`ring_unet_combined_20mix.parquet`](../../data/study_areas/netherlands/stage3_analysis/dnn_probe/2026-03-29/2026-03-29_ring_agg_plus_unet_comparison/ring_unet_combined_20mix.parquet)
-- Probe comparison script: [`scripts/stage3/run_probe_comparison.py`](../../scripts/stage3/run_probe_comparison.py) (config: `ring_agg_plus_unet`)
+- Concat 74D probe: `dnn_probe/2026-03-21/2026-03-21_custom_concat_74d/` (private repo, not copied here)
+- RingAgg k10 74D probe: `dnn_probe/2026-03-21/2026-03-21_custom_ring_agg_k10/` (private repo)
+- UNet-MS 192D probe: `dnn_probe/2026-03-22/unet_supervised_multiscale/` (private repo; checkpoint `best_model_2022_74D_2026-03-22.pt`)
+- Ring+UNet 400D probe: `dnn_probe/2026-03-29/2026-03-29_custom_ring+unet_400d/` (private repo)
+- Combined 400D embeddings: `ring_unet_combined_20mix.parquet` (private repo)
+- Probe comparison script: `scripts/stage3/run_probe_comparison.py` (private repo; config: `ring_agg_plus_unet`)
 
 ---
 
-*Probe parity note (2026-04-19): the Ridge-vs-DNN gap noted in §Setup is a run artifact — see [`reports/2026-04-19-q8-probe-parity/README.md`](../2026-04-19-q8-probe-parity/README.md) for shared-fold reconciliation. On matched 74D multiscale_avg + 5-fold 10km spatial-block CV, DNN mean R²=0.588 beats Ridge 0.557 by +0.030 (6/6 targets), so DNN — not Ridge — is the authoritative probe for UNet embeddings going forward.*
+*Probe parity note (2026-04-19): the Ridge-vs-DNN gap noted in §Setup is a run artifact — see `reports/2026-04-19-q8-probe-parity/README.md` (private repo, not part of this public subset) for shared-fold reconciliation. On matched 74D multiscale_avg + 5-fold 10km spatial-block CV, DNN mean R²=0.588 beats Ridge 0.557 by +0.030 (6/6 targets), so DNN — not Ridge — is the authoritative probe for UNet embeddings going forward.*

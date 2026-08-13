@@ -1,0 +1,16 @@
+source_runs: []
+source_artifacts:
+- data/study_areas/south_holland/stage3_analysis/sensitivity_2026-07-20/sensitivity_results.csv
+- data/study_areas/south_holland/stage3_analysis/sensitivity_2026-07-20/sensitivity_results.json
+plot_config:
+  plot: delta_vs_mstepdt_lines_per_nsettle
+  metric: ridge_r2_oof_average_readout
+  delta: trained - own untrained twin (noncirc mean)
+  error: SD across noncirc targets
+  axis_inverted: true
+git_commit: c88a2051058487c51e6f32a0217643a5b30b3d50
+git_dirty: true
+started_at: '2026-07-21T13:05:47+00:00'
+ended_at: '2026-07-21T13:05:47+00:00'
+producer_script: scripts/one_off/2026-07-21-mpc-sensitivity-figures.py
+schema_version: '1.0'

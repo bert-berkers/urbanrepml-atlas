@@ -1,0 +1,29 @@
+figure: fig_wiring_ours_vs_paper
+generated: '2026-07-17'
+regenerated_from: scripts/mpc/report/fidelity_audit_figures.py
+git_commit_at_build: 26393f93e680c02da181a5c2f41b6683be194ea0
+builder_commit: a497e79fbfcc15cdb86385102b434fb4a24ec765
+commit_then_run_note: "git_commit_at_build (HEAD at render) CONTAINS this builder\
+  \ \u2014 last touched by a497e79, an ancestor of HEAD. Commit-then-run (artifact-provenance\
+  \ rule c) satisfied."
+type: schematic (no data source)
+source_docs:
+- reports/2026-07-15-mpc-mnist-fidelity-audit/paper_ground_truth.md
+- reports/2026-07-15-mpc-mnist-fidelity-audit/as_built_mechanics.md
+- reports/2026-07-15-mpc-mnist-fidelity-audit/findings_ranked.md
+font_used: Calibri
+font_target: Aptos
+font_fallback_chain: Aptos (target, not installed) -> Calibri -> DejaVu Sans
+palette: INK/STEEL/AMBER (shared with scripts/stage2/mpc_methodology_figures.py);
+  SIGNAL red = deviation from paper
+description: Side-by-side wiring of the paper's MPC v1 st1 vs the as-built model.
+  Left/right input strips show the mean-centering difference (zero-mean diverging
+  vs raw all-positive with a loud shared-DC arrow); the 6x6 connectivity matrices
+  show 36 pairs incl. diagonal self-loops (paper) vs 30 pairs with an empty diagonal
+  (as-built, D13). Shared 6-stream / 3-layer / NWTA architecture is drawn muted grey
+  on top.
+anchors:
+  mean_centering: paper_ground_truth.md sec2 (v1 p.9 verbatim); as_built_mechanics.md
+    sec1.1 (glimpse.py:89-125, no centering)
+  self_pred_pairs: paper st1=36 (v1 p.10); as-built=30 (model.py:99-104, include_self_pred=False,
+    D13)

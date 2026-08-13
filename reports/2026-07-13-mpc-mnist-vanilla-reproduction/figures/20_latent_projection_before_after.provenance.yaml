@@ -1,0 +1,15 @@
+figure: 20_latent_projection_before_after.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:58:02+00:00'
+seed: 42
+shows: baseline-final vs corrected-final concat-latent 2D projections (PCA + t-SNE),
+  by digit
+checkpoints:
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full\checkpoint_final.pt
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\checkpoint_final.pt
+inputs:
+- probe_result_final_full.json (both runs, for annotation)
+n_images: 1000
+reducers: PCA + t-SNE (umap-learn not installed)
+note: same test-digit sample set both runs; per-panel independent reduction

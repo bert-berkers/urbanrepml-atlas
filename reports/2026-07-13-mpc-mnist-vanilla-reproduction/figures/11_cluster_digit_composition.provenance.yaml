@@ -1,0 +1,9 @@
+figure: 11_cluster_digit_composition.png
+panel: cluster-map/A2
+regenerated_from: scripts/mpc/mnist/viz.py
+run_dir: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full
+checkpoint: C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_full\checkpoint_final.pt
+checkpoint_step: 3000
+git_commit: 6545b20ef93fe2f32ff7edebf6791653801f63a6
+rendered_at: '2026-07-13T19:07:45+00:00'
+seed: 42

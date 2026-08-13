@@ -1,0 +1,22 @@
+figure: 24_prediction_galleries_corrected.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:58:37+00:00'
+seed: 42
+shows: corrected-run prediction-vs-actual gallery (3 digits, centre fixation) + per-saccade
+  error
+checkpoints:
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\checkpoint_final.pt
+gallery_digits:
+- 3
+- 6
+- 8
+err_batch: 400
+self_recon_pearson_per_stream:
+- 0.373
+- 0.396
+- 0.512
+- 0.575
+- 0.359
+- 0.411
+intra_trend_pct: -0.5

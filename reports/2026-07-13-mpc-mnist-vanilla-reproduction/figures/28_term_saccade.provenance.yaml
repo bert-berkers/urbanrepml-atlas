@@ -1,0 +1,12 @@
+figure: 28_term_saccade.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:47:04+00:00'
+seed: 42
+shows: 'didactic: the K=10 saccade fixation path over a digit, steps numbered'
+term: saccade
+source: glimpse.py sample_fixations, train.py seed+12345 sequence
+digit: 2
+n_saccades_K: 10
+note: saccade count = K=10; NOT N_w (N_w=15 is the NWTA winner count, a distinct concept
+  — see fig 30)

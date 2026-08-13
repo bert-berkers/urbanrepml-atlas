@@ -1,0 +1,29 @@
+figure: fig_f1_mechanism
+generated: '2026-07-17'
+regenerated_from: scripts/mpc/report/fidelity_audit_figures.py
+git_commit_at_build: 26393f93e680c02da181a5c2f41b6683be194ea0
+builder_commit: a497e79fbfcc15cdb86385102b434fb4a24ec765
+commit_then_run_note: "git_commit_at_build (HEAD at render) CONTAINS this builder\
+  \ \u2014 last touched by a497e79, an ancestor of HEAD. Commit-then-run (artifact-provenance\
+  \ rule c) satisfied."
+type: schematic (no data source)
+source_docs:
+- reports/2026-07-15-mpc-mnist-fidelity-audit/paper_ground_truth.md
+- reports/2026-07-15-mpc-mnist-fidelity-audit/as_built_mechanics.md
+- reports/2026-07-15-mpc-mnist-fidelity-audit/findings_ranked.md
+font_used: Calibri
+font_target: Aptos
+font_fallback_chain: Aptos (target, not installed) -> Calibri -> DejaVu Sans
+palette: INK/STEEL/AMBER (shared with scripts/stage2/mpc_methodology_figures.py);
+  SIGNAL red = deviation from paper
+description: 'The F1 causal chain (per-patch mean-centering absent). Six left-to-right
+  stages: all-positive patch -> shared DC across nested windows -> NWTA winners lock
+  to the common-mode -> cross-prediction minimises free energy by predicting the DC
+  -> digit residual squeezed out -> probe accuracy falls as free energy falls (the
+  inversion). Numbers illustrative from the corrected control run (drift-probe 43.0->37.9,
+  FE 593.7->505.4).'
+anchors:
+  F1: findings_ranked.md F1 (FUNDAMENTAL, top suspect); mechanism from as_built_mechanics.md
+    sec3 (model.py:270 NWTA, :284-286 cross-pred, :286 dense z target); probe.py:70
+    reads dense settled z
+  inversion_numbers: "findings_ranked.md clue (a) \u2014 corrected T100/20k run"

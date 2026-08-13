@@ -1,0 +1,19 @@
+figure: 25_fixation_arms_visual.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: e58c296f10275a02216f5c0fd97c4fb23383d9e9
+rendered_at: '2026-07-14T05:47:03+00:00'
+seed: 42
+shows: 3 fixation-policy arms' fixations overlaid on 4 test digits, annotated with
+  probe acc
+inputs:
+- C:\Users\Bert Berkers\PycharmProjects\UrbanRepML\data\mpc_mnist\runs\mpc_st1_corr_T100_20k\fixation_arms_result.json
+arm_acc_pct:
+  random_k10: 21.4
+  centre_single: 73.1
+  centre_biased_k10: 49.7
+arm_latent_dim:
+  random_k10: 7680
+  centre_single: 768
+  centre_biased_k10: 7680
+note: arms are centre_single/centre_biased_k10/random_k10 = 73.1/49.7/21.4%; the report's
+  full 60k/10k probe is 53.51% — a DIFFERENT quantity, not one of these three arms

@@ -1,0 +1,14 @@
+figure: 30_term_nw_k.png
+regenerated_from: scripts/one_off/2026-07-14-report-figure-suite.py
+git_commit: 9da5fa9c3e76c18aa3b2ab832c2a15e01c23e82d
+rendered_at: '2026-07-14T06:41:34+00:00'
+seed: 42
+shows: 'didactic: N_w=15 (NWTA sparsity, real latent) and K=10 (saccades, real glimpses)'
+term: N_w and K
+source: model.py nwta / MPCConfig; glimpse.py
+n_winners_Nw: 15
+n_saccades_K: 10
+hidden_dim_H: 128
+streams_V: 6
+note: windows/glimpse = 6 streams (V), distinct from N_w=15 (NWTA winners) and K=10
+  (saccades)
