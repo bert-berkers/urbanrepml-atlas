@@ -566,7 +566,7 @@ whether that specification was MRPC. It had no glimpse, no saccade, no action, n
 predicted across scales of a single modality, where the paper's whole premise is streams that carry
 genuinely independent content. The foundational questions went back to a human instead of being
 closed by the system that raised them, and the ~5,200 lines were deleted at commit `cab305a`.
-<!-- src: reports/2026-06-14-distant-gap-mpc-implementation-audit/README.md §(a) claims-vs-reality table, §(c) faithfulness gaps 2/3/4, §(d) open questions; deletion commit cab305a cited in .claude/rules/novel-research-escalate-dont-default.md §Why -->
+<!-- src: PRIVATE reports/2026-06-14-distant-gap-mpc-implementation-audit/README.md §(a) claims-vs-reality table, §(c) faithfulness gaps 2/3/4, §(d) open questions (not published; atlas is findings-only); deletion commit cab305a cited in .claude/rules/novel-research-escalate-dont-default.md §Why -->
 That is why nothing novel trains here now without a specification a human has signed.
 
 Then MNIST, to test the mechanism where the answer is known. [We rebuilt the paper's model on digits,
@@ -577,9 +577,9 @@ but free energy climbed over training instead of falling, from 49.5 to 91.3 acro
 the representation's quality stayed flat at 44.7%, 43.5%, 46.9% for epochs 0, 2 and 4. So it was not
 decaying. It was low from the first epoch and stayed there. <!-- src: same README, §"drift or low ceiling" table -->
 
-[A follow-up audit](reports/2026-07-15-mpc-mnist-fidelity-audit/README.md) built two independent descriptions of the model — one from the paper, one from our
+A follow-up audit built two independent descriptions of the model — one from the paper, one from our
 code — and joined them line by line to find where the 35 points went.
-<!-- src: reports/2026-07-15-mpc-mnist-fidelity-audit/README.md (header) --> The answer was mostly not the
+<!-- src: PRIVATE reports/2026-07-15-mpc-mnist-fidelity-audit/README.md (header) (not published; atlas is findings-only) --> The answer was mostly not the
 learning rule. It was where the model is allowed to look. Reading the *same trained weights* at one
 central fixation instead of ten random ones took it from 33.5% to 79.3%. Stopping the settling at the
 free-energy minimum instead of overshooting added another 6 points, to 85.5%. Then the twist: scored
